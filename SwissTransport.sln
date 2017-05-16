@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport.DataAccess", "src\SwissTransport\SwissTransport.DataAccess.csproj", "{D0262178-A48F-4DE0-807B-E76B63E39421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransportTest", "tests\SwissTransportTest\SwissTransportTest.csproj", "{959C6E54-5B1C-40F5-938A-C57B17451421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport.Test", "tests\SwissTransportTest\SwissTransport.Test.csproj", "{959C6E54-5B1C-40F5-938A-C57B17451421}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport.Services", "SwissTransport.Services\SwissTransport.Services.csproj", "{2AD06E38-6AC8-43C3-81AC-37FF73630463}"
 EndProject

@@ -5,6 +5,5 @@
 
     public interface IQueryService
     {
-        Task<IList<T>> Query<T>();
     }
 }

@@ -43,15 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connections.cs" />
-    <Compile Include="StationBoardRoot.cs" />
-    <Compile Include="Stations.cs" />
     <Compile Include="ITransport.cs" />
     <Compile Include="Transport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SwissTransport.Model\SwissTransport.Model.csproj">
+      <Project>{6e02394d-e86e-4f6d-aa7d-cc8ac7c34a62}</Project>
+      <Name>SwissTransport.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

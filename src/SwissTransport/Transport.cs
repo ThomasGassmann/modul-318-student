@@ -39,7 +39,7 @@
             return null;
         }
 
-        public Connections GetConnections(string fromStation, string toStattion)
+        public ConnectionCollection GetConnections(string fromStation, string toStattion)
         {
             var request = Transport.CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStattion);
             var response = request.GetResponse();
@@ -49,7 +49,7 @@
             {
                 var readToEnd = new StreamReader(responseStream).ReadToEnd();
                 var connections =
-                    JsonConvert.DeserializeObject<Connections>(readToEnd);
+                    JsonConvert.DeserializeObject<ConnectionCollection>(readToEnd);
                 return connections;
             }
 

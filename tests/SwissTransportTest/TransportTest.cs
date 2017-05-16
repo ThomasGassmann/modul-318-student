@@ -1,6 +1,7 @@
-﻿namespace SwissTransport
+﻿namespace SwissTransport.Test
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using SwissTransport.DataAccess;
 
     [TestClass]
     public class TransportTest
