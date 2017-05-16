@@ -1,4 +1,4 @@
-﻿namespace SwissTransport
+﻿namespace SwissTransport.DataAccess
 {
     public interface ITransport
     {

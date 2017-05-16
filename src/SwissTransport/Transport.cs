@@ -1,4 +1,4 @@
-﻿namespace SwissTransport
+﻿namespace SwissTransport.DataAccess
 {
     using System.IO;
     using System.Net;

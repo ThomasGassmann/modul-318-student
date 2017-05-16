@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SwissTransport\SwissTransport.csproj">
+    <ProjectReference Include="..\..\src\SwissTransport\SwissTransport.DataAccess.csproj">
       <Project>{d0262178-a48f-4de0-807b-e76b63e39421}</Project>
-      <Name>SwissTransport</Name>
+      <Name>SwissTransport.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
