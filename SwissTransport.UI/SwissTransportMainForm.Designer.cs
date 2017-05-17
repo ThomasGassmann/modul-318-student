@@ -49,6 +49,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,24 +69,23 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btSearchStationBoard = new System.Windows.Forms.Button();
             this.pbStationBoard = new System.Windows.Forms.ProgressBar();
             this.cbSearchStationBoard = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tbSearchStation = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.wbStations = new System.Windows.Forms.WebBrowser();
             this.tbStationLatitude = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.tbStationLongitude = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lvStations = new System.Windows.Forms.ListView();
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btStationSearch = new System.Windows.Forms.Button();
             this.pbStationSearch = new System.Windows.Forms.ProgressBar();
-            this.cbSearchStation = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.gbExtendedOptions.SuspendLayout();
@@ -275,6 +275,8 @@
             this.columnHeader5,
             this.columnHeader13});
             this.lvConnections.FullRowSelect = true;
+            this.lvConnections.GridLines = true;
+            this.lvConnections.HoverSelection = true;
             this.lvConnections.Location = new System.Drawing.Point(419, 6);
             this.lvConnections.Name = "lvConnections";
             this.lvConnections.Size = new System.Drawing.Size(945, 749);
@@ -285,7 +287,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Verkehrsmittel";
-            this.columnHeader1.Width = 320;
+            this.columnHeader1.Width = 180;
             // 
             // columnHeader2
             // 
@@ -306,6 +308,10 @@
             // 
             this.columnHeader5.Text = "Abfahrts-Plattform";
             this.columnHeader5.Width = 140;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Ankunfts-Plattform";
             // 
             // groupBox1
             // 
@@ -448,7 +454,11 @@
             this.columnHeader11,
             this.columnHeader8,
             this.columnHeader9,
-            this.columnHeader10});
+            this.columnHeader10,
+            this.columnHeader14});
+            this.lvStationBoard.FullRowSelect = true;
+            this.lvStationBoard.GridLines = true;
+            this.lvStationBoard.HoverSelection = true;
             this.lvStationBoard.Location = new System.Drawing.Point(429, 26);
             this.lvStationBoard.Name = "lvStationBoard";
             this.lvStationBoard.Size = new System.Drawing.Size(920, 717);
@@ -483,8 +493,12 @@
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "Plattform";
+            this.columnHeader10.Text = "Abfahrts-Plattform";
             this.columnHeader10.Width = 140;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Ankunfts-Plattform";
             // 
             // btSearchStationBoard
             // 
@@ -494,8 +508,9 @@
             this.btSearchStationBoard.Name = "btSearchStationBoard";
             this.btSearchStationBoard.Size = new System.Drawing.Size(406, 66);
             this.btSearchStationBoard.TabIndex = 7;
-            this.btSearchStationBoard.Text = "Suchen";
+            this.btSearchStationBoard.Text = "Anzeigen";
             this.btSearchStationBoard.UseVisualStyleBackColor = true;
+            this.btSearchStationBoard.Click += new System.EventHandler(this.SearchStationBoard_Click);
             // 
             // pbStationBoard
             // 
@@ -513,6 +528,8 @@
             this.cbSearchStationBoard.Size = new System.Drawing.Size(406, 33);
             this.cbSearchStationBoard.TabIndex = 2;
             this.cbSearchStationBoard.DropDown += new System.EventHandler(this.LoadStationCombobox);
+            this.cbSearchStationBoard.SelectedIndexChanged += new System.EventHandler(this.StationBoardDisplayButtonValidation);
+            this.cbSearchStationBoard.Leave += new System.EventHandler(this.StationBoardDisplayButtonValidation);
             // 
             // label6
             // 
@@ -525,11 +542,11 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.tbSearchStation);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.lvStations);
             this.tabPage3.Controls.Add(this.btStationSearch);
             this.tabPage3.Controls.Add(this.pbStationSearch);
-            this.tabPage3.Controls.Add(this.cbSearchStation);
             this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Location = new System.Drawing.Point(8, 39);
             this.tabPage3.Name = "tabPage3";
@@ -539,6 +556,14 @@
             this.tabPage3.Text = "Stationen";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tbSearchStation
+            // 
+            this.tbSearchStation.Location = new System.Drawing.Point(129, 22);
+            this.tbSearchStation.Name = "tbSearchStation";
+            this.tbSearchStation.Size = new System.Drawing.Size(356, 31);
+            this.tbSearchStation.TabIndex = 10;
+            this.tbSearchStation.TextChanged += new System.EventHandler(this.SearchStation_TextChanged);
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -546,7 +571,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.wbStations);
             this.groupBox2.Controls.Add(this.tbStationLatitude);
-            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.tbStationLongitude);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Location = new System.Drawing.Point(504, 25);
@@ -561,32 +585,23 @@
             this.wbStations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.wbStations.Location = new System.Drawing.Point(22, 133);
+            this.wbStations.Location = new System.Drawing.Point(22, 88);
             this.wbStations.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbStations.Name = "wbStations";
-            this.wbStations.Size = new System.Drawing.Size(804, 562);
+            this.wbStations.Size = new System.Drawing.Size(804, 607);
             this.wbStations.TabIndex = 4;
             // 
             // tbStationLatitude
             // 
-            this.tbStationLatitude.Location = new System.Drawing.Point(197, 89);
+            this.tbStationLatitude.Location = new System.Drawing.Point(552, 38);
             this.tbStationLatitude.Name = "tbStationLatitude";
             this.tbStationLatitude.ReadOnly = true;
             this.tbStationLatitude.Size = new System.Drawing.Size(274, 31);
             this.tbStationLatitude.TabIndex = 3;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(17, 92);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(123, 25);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Breitengrad";
-            // 
             // tbStationLongitude
             // 
-            this.tbStationLongitude.Location = new System.Drawing.Point(197, 38);
+            this.tbStationLongitude.Location = new System.Drawing.Point(272, 38);
             this.tbStationLongitude.Name = "tbStationLongitude";
             this.tbStationLongitude.ReadOnly = true;
             this.tbStationLongitude.Size = new System.Drawing.Size(274, 31);
@@ -597,9 +612,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(17, 41);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(127, 25);
+            this.label9.Size = new System.Drawing.Size(256, 25);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Längengrad";
+            this.label9.Text = "Längengrad / Breitengrad";
             // 
             // lvStations
             // 
@@ -607,17 +622,21 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lvStations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader12});
+            this.lvStations.FullRowSelect = true;
             this.lvStations.Location = new System.Drawing.Point(27, 171);
+            this.lvStations.MultiSelect = false;
             this.lvStations.Name = "lvStations";
             this.lvStations.Size = new System.Drawing.Size(458, 573);
             this.lvStations.TabIndex = 8;
             this.lvStations.UseCompatibleStateImageBehavior = false;
             this.lvStations.View = System.Windows.Forms.View.Details;
+            this.lvStations.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.Stations_ColumnWidthChanging);
+            this.lvStations.SelectedIndexChanged += new System.EventHandler(this.Stations_SelectedIndexChanged);
             // 
             // columnHeader12
             // 
             this.columnHeader12.Text = "Name";
-            this.columnHeader12.Width = 441;
+            this.columnHeader12.Width = 450;
             // 
             // btStationSearch
             // 
@@ -628,6 +647,7 @@
             this.btStationSearch.TabIndex = 7;
             this.btStationSearch.Text = "Suchen";
             this.btStationSearch.UseVisualStyleBackColor = true;
+            this.btStationSearch.Click += new System.EventHandler(this.StationSearch_Click);
             // 
             // pbStationSearch
             // 
@@ -635,14 +655,6 @@
             this.pbStationSearch.Name = "pbStationSearch";
             this.pbStationSearch.Size = new System.Drawing.Size(356, 33);
             this.pbStationSearch.TabIndex = 6;
-            // 
-            // cbSearchStation
-            // 
-            this.cbSearchStation.FormattingEnabled = true;
-            this.cbSearchStation.Location = new System.Drawing.Point(129, 22);
-            this.cbSearchStation.Name = "cbSearchStation";
-            this.cbSearchStation.Size = new System.Drawing.Size(356, 33);
-            this.cbSearchStation.TabIndex = 5;
             // 
             // label8
             // 
@@ -652,10 +664,6 @@
             this.label8.Size = new System.Drawing.Size(79, 25);
             this.label8.TabIndex = 4;
             this.label8.Text = "Station";
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Ankunfts-Plattform";
             // 
             // SwissTransportMainForm
             // 
@@ -722,7 +730,6 @@
         private System.Windows.Forms.DateTimePicker dtpStationBoardDate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btSearchStationBoard;
-        private System.Windows.Forms.ListView lvStationBoard;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
@@ -730,14 +737,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ProgressBar pbStationSearch;
-        private System.Windows.Forms.ComboBox cbSearchStation;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btStationSearch;
         private System.Windows.Forms.ListView lvStations;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox tbStationLatitude;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbStationLongitude;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.WebBrowser wbStations;
@@ -747,6 +752,9 @@
         private System.Windows.Forms.CheckBox cbMoreStationBoardOptions;
         private System.Windows.Forms.GroupBox gbMoreStationOptions;
         private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ListView lvStationBoard;
+        private System.Windows.Forms.TextBox tbSearchStation;
     }
 }
 

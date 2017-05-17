@@ -51,10 +51,12 @@
     <Compile Include="ActionHandlers\ActionHandler.cs" />
     <Compile Include="ActionHandlers\IActionHandler.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
-    <Compile Include="Mappers\ConnectionListViewItemCreator.cs" />
+    <Compile Include="Mappers\ConnectionListViewItemMapper.cs" />
     <Compile Include="Location\LocationService.cs" />
     <Compile Include="Mappers\Interfaces\IMapper.cs" />
+    <Compile Include="Mappers\StationBoardListViewItemMapper.cs" />
     <Compile Include="Mappers\TransportStationComboboxItemMapper.cs" />
+    <Compile Include="Mappers\TransportStationListViewItemMapper.cs" />
     <Compile Include="SwissTransportMainForm.cs">
       <SubType>Form</SubType>
     </Compile>

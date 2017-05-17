@@ -14,7 +14,7 @@
                 .Where(x => x
                     .GetInterfaces()
                     .Contains(typeof(IMapper<TSource, TResult>)));
-            if (mappers.Any())
+            if (!mappers.Any())
             {
                 throw new InvalidOperationException("No Mapper specified.");
             }

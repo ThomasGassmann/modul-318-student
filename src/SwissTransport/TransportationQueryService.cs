@@ -28,23 +28,11 @@
             return null;
         }
 
-        public StationBoardRoot GetStationBoard(string station, string id)
-        {
-            var request = TransportationQueryService.CreateWebRequest(
-                $"http://transport.opendata.ch/v1/stationboard?Station={station}&id={id}");
-            var response = request.GetResponse();
-            var responseStream = response.GetResponseStream();
+        public StationBoardRoot GetStationBoard(string id, DateTime dateTime) =>
+            this.GetStationBoard("id", id, dateTime);
 
-            if (responseStream != null)
-            {
-                var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var stationboard =
-                    JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
-                return stationboard;
-            }
-
-            return null;
-        }
+        public StationBoardRoot GetStationBoardByName(string name, DateTime dateTime) =>
+            this.GetStationBoard("station", name, dateTime);
 
         public ConnectionCollection GetConnections(string fromStation, string toStation, DateTime time, bool isArrivalTime)
         {
@@ -79,6 +67,25 @@
             request.Proxy = webProxy;
             
             return request;
+        }
+
+        private StationBoardRoot GetStationBoard(string paramName, string paramValue, DateTime dateTime)
+        {
+            var formattedDateTime = dateTime.ToString("yyyy-MM-dd HH:mm").Replace(" ", "%20");
+            var request = TransportationQueryService.CreateWebRequest(
+                $"http://transport.opendata.ch/v1/stationboard?{paramName}={paramValue}&datetime={formattedDateTime}");
+            var response = request.GetResponse();
+            var responseStream = response.GetResponseStream();
+
+            if (responseStream != null)
+            {
+                var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                var stationboard =
+                    JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
+                return stationboard;
+            }
+
+            return null;
         }
     }
 }

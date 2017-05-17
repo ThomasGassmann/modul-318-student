@@ -9,7 +9,9 @@
     {
         StationCollection GetStations(string query);
 
-        StationBoardRoot GetStationBoard(string station, string id);
+        StationBoardRoot GetStationBoard(string id, DateTime dateTime);
+
+        StationBoardRoot GetStationBoardByName(string name, DateTime dateTime);
 
         ConnectionCollection GetConnections(string fromStation, string toStation);
 
