@@ -1,8 +1,9 @@
-﻿namespace SwissTransport.Model
+﻿namespace SwissTransport.Model.Station
 {
     using Newtonsoft.Json;
+    using SwissTransport.Model.Common;
 
-    public class Station
+    public class TransportStation
     {
         [JsonProperty("id")]
         public string Id { get; set; }

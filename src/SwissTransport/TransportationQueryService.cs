@@ -3,19 +3,24 @@
     using System.IO;
     using System.Net;
     using Newtonsoft.Json;
+    using SwissTransport.Model.Station;
+    using SwissTransport.Model.StationBoard;
+    using SwissTransport.Model.Connection;
 
-    public class Transport : ITransport
+    public class TransportationQueryService : IQueryService
     {
-        public Stations GetStations(string query)
+        // TODO: Implement caching to prevent 429
+        public StationCollection GetStations(string query)
         {
-            var request = Transport.CreateWebRequest("http://transport.opendata.ch/v1/locations?query=" + query);
+            var request = TransportationQueryService.CreateWebRequest(
+                $"http://transport.opendata.ch/v1/locations?query={query}");
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
             if (responseStream != null)
             {
                 var message = new StreamReader(responseStream).ReadToEnd();
-                var stations = JsonConvert.DeserializeObject<Stations>(message);
+                var stations = JsonConvert.DeserializeObject<StationCollection>(message);
                 return stations;
             }
 
@@ -24,7 +29,8 @@
 
         public StationBoardRoot GetStationBoard(string station, string id)
         {
-            var request = Transport.CreateWebRequest("http://transport.opendata.ch/v1/stationboard?Station=" + station + "&id=" + id);
+            var request = TransportationQueryService.CreateWebRequest(
+                $"http://transport.opendata.ch/v1/stationboard?Station={station}&id={id}");
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
@@ -39,9 +45,10 @@
             return null;
         }
 
-        public ConnectionCollection GetConnections(string fromStation, string toStattion)
+        public ConnectionCollection GetConnections(string fromStation, string toStation)
         {
-            var request = Transport.CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStattion);
+            var request = TransportationQueryService.CreateWebRequest(
+                $"http://transport.opendata.ch/v1/connections?from={fromStation}&to={toStation}");
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 

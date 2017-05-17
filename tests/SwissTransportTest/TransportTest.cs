@@ -6,13 +6,18 @@
     [TestClass]
     public class TransportTest
     {
-        private ITransport testee;
+        private readonly IQueryService queryService;
+
+        public TransportTest()
+        {
+            this.queryService = new TransportationQueryService();
+        }
 
         [TestMethod]
         public void Locations()
         {
-            testee = new Transport();
-            var stations = testee.GetStations("Sursee,");
+            var stations = this.queryService.GetStations("Sursee,");
+
 
             Assert.AreEqual(50, stations.StationList.Count);
         }
@@ -20,8 +25,7 @@
         [TestMethod]
         public void StationBoard()
         {
-            testee = new Transport();
-            var stationBoard = testee.GetStationBoard("Sursee", "8502007");
+            var stationBoard = this.queryService.GetStationBoard("Sursee", "8502007");
 
             Assert.IsNotNull(stationBoard);
         }
@@ -29,8 +33,7 @@
         [TestMethod]
         public void Connections()
         {
-            testee = new Transport();
-            var connections = testee.GetConnections("Sursee", "Luzern");
+            var connections = this.queryService.GetConnections("Sursee", "Luzern");
 
             Assert.IsNotNull(connections);
         }

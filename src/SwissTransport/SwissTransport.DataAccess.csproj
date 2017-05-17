@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITransport.cs" />
-    <Compile Include="Transport.cs" />
+    <Compile Include="IQueryService.cs" />
+    <Compile Include="TransportationQueryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

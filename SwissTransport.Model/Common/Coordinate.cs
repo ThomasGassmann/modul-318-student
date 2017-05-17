@@ -1,4 +1,4 @@
-﻿namespace SwissTransport.Model
+﻿namespace SwissTransport.Model.Common
 {
     using Newtonsoft.Json;
 

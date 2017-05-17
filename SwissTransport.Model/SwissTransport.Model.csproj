@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection.cs" />
-    <Compile Include="ConnectionPoint.cs" />
-    <Compile Include="ConnectionCollection.cs" />
-    <Compile Include="Coordinate.cs" />
+    <Compile Include="Connection\TransportConnection.cs" />
+    <Compile Include="Connection\ConnectionPoint.cs" />
+    <Compile Include="Connection\ConnectionCollection.cs" />
+    <Compile Include="Common\Coordinate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Station.cs" />
-    <Compile Include="StationBoard.cs" />
-    <Compile Include="StationBoardRoot.cs" />
-    <Compile Include="StationCollection.cs" />
-    <Compile Include="Stop.cs" />
+    <Compile Include="Station\TransportStation.cs" />
+    <Compile Include="StationBoard\StationBoard.cs" />
+    <Compile Include="StationBoard\StationBoardRoot.cs" />
+    <Compile Include="Station\StationCollection.cs" />
+    <Compile Include="Common\Stop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

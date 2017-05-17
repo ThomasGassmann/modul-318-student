@@ -1,4 +1,4 @@
-namespace SwissTransport.Model
+namespace SwissTransport.Model.Connection
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -6,6 +6,6 @@ namespace SwissTransport.Model
     public class ConnectionCollection
     {
         [JsonProperty("connections")]
-        public List<Connection> ConnectionList { get; set; } 
+        public List<TransportConnection> ConnectionList { get; set; } 
     }
 }

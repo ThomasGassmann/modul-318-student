@@ -1,8 +1,8 @@
-﻿namespace SwissTransport.Model
+﻿namespace SwissTransport.Model.Connection
 {
     using Newtonsoft.Json;
 
-    public class Connection
+    public class TransportConnection
     {
         [JsonProperty("from")]
         public ConnectionPoint From { get; set; }

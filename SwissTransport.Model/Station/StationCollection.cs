@@ -1,4 +1,4 @@
-﻿namespace SwissTransport.Model
+﻿namespace SwissTransport.Model.Station
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -6,6 +6,6 @@
     public class StationCollection
     {
         [JsonProperty("stations")]
-        public List<Station> StationList { get; set; }
+        public List<TransportStation> StationList { get; set; }
     }
 }
