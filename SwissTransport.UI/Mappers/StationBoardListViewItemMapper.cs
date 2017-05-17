@@ -12,8 +12,13 @@
         {
             foreach (var entry in source.Entries)
             {
-                var listViewItem = new ListViewItem(entry.Operator);
-                listViewItem.SubItems.Add(entry.Name);
+                var listViewItem = new ListViewItem($"{entry.Operator} ({entry.Name})");
+                listViewItem.SubItems.Add(entry.Stop.Departure.ToString("HH:mm"));
+                listViewItem.SubItems.Add(entry.To);
+                listViewItem.SubItems.Add("Ankunftszeit");
+                listViewItem.SubItems.Add("Dauer");
+                listViewItem.SubItems.Add("Abfahrtsplattform");
+                listViewItem.SubItems.Add("Ankunftsplattform");
                 yield return listViewItem;
             }
         }

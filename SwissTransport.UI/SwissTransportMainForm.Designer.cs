@@ -499,6 +499,7 @@
             // columnHeader14
             // 
             this.columnHeader14.Text = "Ankunfts-Plattform";
+            this.columnHeader14.Width = 50;
             // 
             // btSearchStationBoard
             // 

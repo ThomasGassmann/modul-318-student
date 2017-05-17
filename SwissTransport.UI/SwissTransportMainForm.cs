@@ -136,7 +136,7 @@
             ComboboxValidater.ContainValidLocations(this.cbArrival, this.cbDeparture);
         
         private void ValidateStationBoardDisplayButton() =>
-            this.btStationSearch.Enabled = this.IsValidStationBoardStation()
+            this.btSearchStationBoard.Enabled = this.IsValidStationBoardStation()
                 ? true
                 : false;
 
@@ -178,9 +178,10 @@
             if (this.cbSearchStationBoard.SelectedItem != null &&
                 this.IsValidStationBoardStation())
             {
+                this.btSearchStationBoard.Enabled = false;
                 this.pbStationBoard.Style = ProgressBarStyle.Marquee;
-                var station = (TransportStation)this.cbSearchStationBoard.SelectedItem;
-                var stationId = station.Id;
+                var station = (ComboboxItemViewModel<TransportStation>)this.cbSearchStationBoard.SelectedItem;
+                var stationId = station.Value.Id;
                 var constructedDateTime = this.cbMoreStationBoardOptions.Checked
                     ? this.ConstructDateTime(this.dtpConnectionSearchDate, this.dtpConnectionSearchTime)
                     : DateTime.Now;
@@ -192,6 +193,7 @@
                     exception => MessageBox.Show("Die Daten der API scheinen invalid zu sein. Bitte überprüfen Sie ihre Internetverbindung."));
                 this.lvStationBoard.Items.AddRange(listViewItems);
                 this.pbStationBoard.Style = ProgressBarStyle.Blocks;
+                this.ValidateStationBoardDisplayButton();
             }
         }
     }
