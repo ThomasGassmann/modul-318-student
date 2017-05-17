@@ -61,8 +61,8 @@
                     return;
                 }
 
-                var selectedViewModels = stations.StationList.Select(x =>
-                    new ComboboxItemViewModel<TransportStation>(x, f => f.Name));
+                var selectedViewModels = stations.StationList
+                    .MapCollection<TransportStation, ComboboxItemViewModel<TransportStation>>();
                 cb.DataSource = selectedViewModels.ToArray();
                 cb.Text = comboBoxText;
                 cb.SelectionStart = selectionStart;

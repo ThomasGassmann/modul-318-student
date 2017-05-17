@@ -54,6 +54,7 @@
     <Compile Include="Mappers\ConnectionListViewItemCreator.cs" />
     <Compile Include="Location\LocationService.cs" />
     <Compile Include="Mappers\Interfaces\IMapper.cs" />
+    <Compile Include="Mappers\TransportStationComboboxItemMapper.cs" />
     <Compile Include="SwissTransportMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
