@@ -6,6 +6,7 @@
     using SwissTransport.Model.Station;
     using SwissTransport.Model.StationBoard;
     using SwissTransport.Model.Connection;
+    using System;
 
     public class TransportationQueryService : IQueryService
     {
@@ -45,10 +46,13 @@
             return null;
         }
 
-        public ConnectionCollection GetConnections(string fromStation, string toStation)
+        public ConnectionCollection GetConnections(string fromStation, string toStation, DateTime time, bool isArrivalTime)
         {
+            var date = time.ToString("yyyy-MM-dd");
+            var dateTime = time.ToString("HH:mm");
+            var arrivalTimeValue = isArrivalTime ? "1" : "0";
             var request = TransportationQueryService.CreateWebRequest(
-                $"http://transport.opendata.ch/v1/connections?from={fromStation}&to={toStation}");
+                $"http://transport.opendata.ch/v1/connections?from={fromStation}&to={toStation}&date={date}&time={dateTime}&isArrivalTime={arrivalTimeValue}");
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
@@ -62,6 +66,9 @@
 
             return null;
         }
+
+        public ConnectionCollection GetConnections(string fromStation, string toStation) =>
+            this.GetConnections(fromStation, toStation, DateTime.Now, false);
 
         private static WebRequest CreateWebRequest(string url)
         {

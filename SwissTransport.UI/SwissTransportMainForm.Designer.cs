@@ -55,7 +55,12 @@
             this.cbArrival = new System.Windows.Forms.ComboBox();
             this.cbDeparture = new System.Windows.Forms.ComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.gbMoreStationOptions = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dtpStationBoardDate = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
             this.dtpStationBoardTime = new System.Windows.Forms.DateTimePicker();
+            this.cbMoreStationBoardOptions = new System.Windows.Forms.CheckBox();
             this.lvStationBoard = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -64,8 +69,6 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btSearchStationBoard = new System.Windows.Forms.Button();
-            this.dtpStationBoardDate = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
             this.pbStationBoard = new System.Windows.Forms.ProgressBar();
             this.cbSearchStationBoard = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -82,11 +85,13 @@
             this.pbStationSearch = new System.Windows.Forms.ProgressBar();
             this.cbSearchStation = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.gbExtendedOptions.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.gbMoreStationOptions.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -145,6 +150,7 @@
             // 
             this.pbConnectionSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbConnectionSearch.Location = new System.Drawing.Point(6, 649);
+            this.pbConnectionSearch.MarqueeAnimationSpeed = 500;
             this.pbConnectionSearch.Name = "pbConnectionSearch";
             this.pbConnectionSearch.Size = new System.Drawing.Size(407, 50);
             this.pbConnectionSearch.TabIndex = 5;
@@ -159,6 +165,7 @@
             this.btSearchConnections.TabIndex = 4;
             this.btSearchConnections.Text = "Verbindungen suchen";
             this.btSearchConnections.UseVisualStyleBackColor = true;
+            this.btSearchConnections.Click += new System.EventHandler(this.SearchConnections_Click);
             // 
             // gbExtendedOptions
             // 
@@ -179,7 +186,8 @@
             // 
             // dtpConnectionSearchTime
             // 
-            this.dtpConnectionSearchTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpConnectionSearchTime.CustomFormat = "HH:mm";
+            this.dtpConnectionSearchTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpConnectionSearchTime.Location = new System.Drawing.Point(11, 191);
             this.dtpConnectionSearchTime.Name = "dtpConnectionSearchTime";
             this.dtpConnectionSearchTime.ShowUpDown = true;
@@ -264,7 +272,9 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader13});
+            this.lvConnections.FullRowSelect = true;
             this.lvConnections.Location = new System.Drawing.Point(419, 6);
             this.lvConnections.Name = "lvConnections";
             this.lvConnections.Size = new System.Drawing.Size(945, 749);
@@ -294,7 +304,7 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Plattform";
+            this.columnHeader5.Text = "Abfahrts-Plattform";
             this.columnHeader5.Width = 140;
             // 
             // groupBox1
@@ -336,6 +346,8 @@
             this.cbArrival.Size = new System.Drawing.Size(269, 33);
             this.cbArrival.TabIndex = 1;
             this.cbArrival.DropDown += new System.EventHandler(this.LoadStationCombobox);
+            this.cbArrival.SelectedIndexChanged += new System.EventHandler(this.ConnectionButtonValidation);
+            this.cbArrival.Leave += new System.EventHandler(this.ConnectionButtonValidation);
             // 
             // cbDeparture
             // 
@@ -345,14 +357,15 @@
             this.cbDeparture.Size = new System.Drawing.Size(269, 33);
             this.cbDeparture.TabIndex = 0;
             this.cbDeparture.DropDown += new System.EventHandler(this.LoadStationCombobox);
+            this.cbDeparture.SelectedIndexChanged += new System.EventHandler(this.ConnectionButtonValidation);
+            this.cbDeparture.Leave += new System.EventHandler(this.ConnectionButtonValidation);
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dtpStationBoardTime);
+            this.tabPage1.Controls.Add(this.gbMoreStationOptions);
+            this.tabPage1.Controls.Add(this.cbMoreStationBoardOptions);
             this.tabPage1.Controls.Add(this.lvStationBoard);
             this.tabPage1.Controls.Add(this.btSearchStationBoard);
-            this.tabPage1.Controls.Add(this.dtpStationBoardDate);
-            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.pbStationBoard);
             this.tabPage1.Controls.Add(this.cbSearchStationBoard);
             this.tabPage1.Controls.Add(this.label6);
@@ -364,14 +377,65 @@
             this.tabPage1.Text = "Abfahrtstafel";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // gbMoreStationOptions
+            // 
+            this.gbMoreStationOptions.Controls.Add(this.label7);
+            this.gbMoreStationOptions.Controls.Add(this.dtpStationBoardDate);
+            this.gbMoreStationOptions.Controls.Add(this.label11);
+            this.gbMoreStationOptions.Controls.Add(this.dtpStationBoardTime);
+            this.gbMoreStationOptions.Location = new System.Drawing.Point(17, 139);
+            this.gbMoreStationOptions.Name = "gbMoreStationOptions";
+            this.gbMoreStationOptions.Size = new System.Drawing.Size(406, 219);
+            this.gbMoreStationOptions.TabIndex = 12;
+            this.gbMoreStationOptions.TabStop = false;
+            this.gbMoreStationOptions.Text = "Mehr Optionen";
+            this.gbMoreStationOptions.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 25);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Datum";
+            // 
+            // dtpStationBoardDate
+            // 
+            this.dtpStationBoardDate.Location = new System.Drawing.Point(21, 72);
+            this.dtpStationBoardDate.Name = "dtpStationBoardDate";
+            this.dtpStationBoardDate.Size = new System.Drawing.Size(367, 31);
+            this.dtpStationBoardDate.TabIndex = 5;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 139);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 25);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Zeit";
+            // 
             // dtpStationBoardTime
             // 
-            this.dtpStationBoardTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpStationBoardTime.Location = new System.Drawing.Point(536, 72);
+            this.dtpStationBoardTime.CustomFormat = "HH:mm";
+            this.dtpStationBoardTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpStationBoardTime.Location = new System.Drawing.Point(21, 167);
             this.dtpStationBoardTime.Name = "dtpStationBoardTime";
             this.dtpStationBoardTime.ShowUpDown = true;
-            this.dtpStationBoardTime.Size = new System.Drawing.Size(221, 31);
+            this.dtpStationBoardTime.Size = new System.Drawing.Size(367, 31);
             this.dtpStationBoardTime.TabIndex = 9;
+            // 
+            // cbMoreStationBoardOptions
+            // 
+            this.cbMoreStationBoardOptions.AutoSize = true;
+            this.cbMoreStationBoardOptions.Location = new System.Drawing.Point(17, 104);
+            this.cbMoreStationBoardOptions.Name = "cbMoreStationBoardOptions";
+            this.cbMoreStationBoardOptions.Size = new System.Drawing.Size(217, 29);
+            this.cbMoreStationBoardOptions.TabIndex = 11;
+            this.cbMoreStationBoardOptions.Text = "Mehrere Optionen";
+            this.cbMoreStationBoardOptions.UseVisualStyleBackColor = true;
+            this.cbMoreStationBoardOptions.CheckedChanged += new System.EventHandler(this.MoreStationBoardOptions_CheckedChanged);
             // 
             // lvStationBoard
             // 
@@ -385,9 +449,9 @@
             this.columnHeader8,
             this.columnHeader9,
             this.columnHeader10});
-            this.lvStationBoard.Location = new System.Drawing.Point(25, 125);
+            this.lvStationBoard.Location = new System.Drawing.Point(429, 26);
             this.lvStationBoard.Name = "lvStationBoard";
-            this.lvStationBoard.Size = new System.Drawing.Size(1322, 630);
+            this.lvStationBoard.Size = new System.Drawing.Size(920, 717);
             this.lvStationBoard.TabIndex = 8;
             this.lvStationBoard.UseCompatibleStateImageBehavior = false;
             this.lvStationBoard.View = System.Windows.Forms.View.Details;
@@ -424,50 +488,36 @@
             // 
             // btSearchStationBoard
             // 
+            this.btSearchStationBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btSearchStationBoard.Enabled = false;
-            this.btSearchStationBoard.Location = new System.Drawing.Point(763, 23);
+            this.btSearchStationBoard.Location = new System.Drawing.Point(17, 587);
             this.btSearchStationBoard.Name = "btSearchStationBoard";
-            this.btSearchStationBoard.Size = new System.Drawing.Size(230, 81);
+            this.btSearchStationBoard.Size = new System.Drawing.Size(406, 66);
             this.btSearchStationBoard.TabIndex = 7;
             this.btSearchStationBoard.Text = "Suchen";
             this.btSearchStationBoard.UseVisualStyleBackColor = true;
             // 
-            // dtpStationBoardDate
-            // 
-            this.dtpStationBoardDate.Location = new System.Drawing.Point(138, 73);
-            this.dtpStationBoardDate.Name = "dtpStationBoardDate";
-            this.dtpStationBoardDate.Size = new System.Drawing.Size(392, 31);
-            this.dtpStationBoardDate.TabIndex = 5;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 78);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 25);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Zeit";
-            // 
             // pbStationBoard
             // 
-            this.pbStationBoard.Location = new System.Drawing.Point(999, 23);
+            this.pbStationBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbStationBoard.Location = new System.Drawing.Point(17, 659);
             this.pbStationBoard.Name = "pbStationBoard";
-            this.pbStationBoard.Size = new System.Drawing.Size(348, 81);
+            this.pbStationBoard.Size = new System.Drawing.Size(406, 81);
             this.pbStationBoard.TabIndex = 3;
             // 
             // cbSearchStationBoard
             // 
             this.cbSearchStationBoard.FormattingEnabled = true;
-            this.cbSearchStationBoard.Location = new System.Drawing.Point(138, 23);
+            this.cbSearchStationBoard.Location = new System.Drawing.Point(17, 54);
             this.cbSearchStationBoard.Name = "cbSearchStationBoard";
-            this.cbSearchStationBoard.Size = new System.Drawing.Size(619, 33);
+            this.cbSearchStationBoard.Size = new System.Drawing.Size(406, 33);
             this.cbSearchStationBoard.TabIndex = 2;
             this.cbSearchStationBoard.DropDown += new System.EventHandler(this.LoadStationCombobox);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 26);
+            this.label6.Location = new System.Drawing.Point(12, 26);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 25);
             this.label6.TabIndex = 1;
@@ -603,6 +653,10 @@
             this.label8.TabIndex = 4;
             this.label8.Text = "Station";
             // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Ankunfts-Plattform";
+            // 
             // SwissTransportMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -612,6 +666,7 @@
             this.MinimumSize = new System.Drawing.Size(1412, 879);
             this.Name = "SwissTransportMainForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Swiss Transport - by Thomas Gassmann";
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -622,6 +677,8 @@
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.gbMoreStationOptions.ResumeLayout(false);
+            this.gbMoreStationOptions.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -686,6 +743,10 @@
         private System.Windows.Forms.WebBrowser wbStations;
         private System.Windows.Forms.DateTimePicker dtpConnectionSearchTime;
         private System.Windows.Forms.DateTimePicker dtpStationBoardTime;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox cbMoreStationBoardOptions;
+        private System.Windows.Forms.GroupBox gbMoreStationOptions;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
     }
 }
 

@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using SwissTransport.Model.Station;
+    using System;
 
     public class ConnectionPoint
     {
@@ -21,5 +22,23 @@
         public string Platform { get; set; }
 
         public string RealtimeAvailability { get; set; }
+
+        public DateTime DepartureDateTime
+        {
+            get
+            {
+                DateTime.TryParse(this.Departure, out var returnValue);
+                return returnValue;
+            }
+        }
+
+        public DateTime ArrivalDateTime
+        {
+            get
+            {
+                DateTime.TryParse(this.Arrival, out var returnValue);
+                return returnValue;
+            }
+        }
     }
 }

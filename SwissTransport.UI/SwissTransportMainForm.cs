@@ -2,12 +2,15 @@
 {
     using SwissTransport.DataAccess;
     using SwissTransport.Model.Station;
+    using SwissTransport.UI.Validation;
     using SwissTransport.UI.ActionHandlers;
     using SwissTransport.UI.ViewModels;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using System.Collections.Generic;
+    using SwissTransport.Model.Connection;
 
     public partial class SwissTransportMainForm : Form
     {
@@ -49,8 +52,10 @@
                 var comboBoxText = cb.Text;
                 var selectionStart = cb.SelectionStart;
                 var length = cb.SelectionLength;
-                var stations = await Task.Run(
-                    () => this.queryService.GetStations(comboBoxText));
+                cb.DataSource = new List<string> { "Resultate werden geholt..." };
+                var stations = await Task.Run(() =>
+                    this.actionHandler.HandleFunc(() =>
+                        this.queryService.GetStations(comboBoxText)));
                 if (stations == default(StationCollection))
                 {
                     return;
@@ -62,6 +67,54 @@
                 cb.Text = comboBoxText;
                 cb.SelectionStart = selectionStart;
                 cb.SelectionLength = length;
+            }
+        }
+
+        private void MoreStationBoardOptions_CheckedChanged(object sender, EventArgs e) =>
+            this.gbMoreStationOptions.Visible = !this.gbMoreStationOptions.Visible;
+
+        private async void SearchConnections_Click(object sender, EventArgs e)
+        {
+            if (this.AreValidConnectionStationsSelected())
+            {
+                var button = sender as Button;
+                button.Enabled = false;
+                this.lvConnections.Items.Clear();
+                this.pbConnectionSearch.MarqueeAnimationSpeed = 100;
+                this.pbConnectionSearch.Style = ProgressBarStyle.Marquee;
+                var fromStationViewModel = (ComboboxItemViewModel<TransportStation>)this.cbDeparture.SelectedItem;
+                var toStationViewModel = (ComboboxItemViewModel<TransportStation>)this.cbArrival.SelectedItem;
+                var constructedDateTime = this.cbShowExtendedOptions.Checked
+                    ? this.dtpConnectionSearchDate.Value.Date
+                        .AddHours(this.dtpConnectionSearchTime.Value.Hour)
+                        .AddMinutes(this.dtpConnectionSearchTime.Value.Minute)
+                    : DateTime.Now;
+                var fromStationId = fromStationViewModel.Value.Id;
+                var toStationId = toStationViewModel.Value.Id;
+                var isArrivalTime = this.rbArrivalTime.Checked;
+                var connections = await Task.Run(() => 
+                    this.actionHandler.HandleFunc(() =>
+                        this.queryService.GetConnections(fromStationId, toStationId, constructedDateTime, isArrivalTime)));
+                var viewModels = connections.ConnectionList
+                    .MapCollection<TransportConnection, ListViewItem>();
+                this.lvConnections.Items.AddRange(viewModels.ToArray());
+                this.pbConnectionSearch.Style = ProgressBarStyle.Blocks;
+                this.ValidateConnectionSearchButton();
+            }
+        }
+
+        private void ConnectionButtonValidation(object sender, EventArgs e) =>
+            this.ValidateConnectionSearchButton();
+
+        private bool AreValidConnectionStationsSelected() =>
+            ComboboxValidater.ContainValidLocations(this.cbArrival, this.cbDeparture);
+
+        private void ValidateConnectionSearchButton()
+        {
+            this.btSearchConnections.Enabled = false;
+            if (this.AreValidConnectionStationsSelected())
+            {
+                this.btSearchConnections.Enabled = true;
             }
         }
     }
