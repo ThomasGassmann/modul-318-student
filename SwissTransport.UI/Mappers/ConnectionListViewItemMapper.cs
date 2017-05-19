@@ -3,8 +3,6 @@
     using SwissTransport.Model.Connection;
     using SwissTransport.UI.Mappers.Interfaces;
     using SwissTransport.UI.Properties;
-    using System;
-    using System.Globalization;
     using System.Windows.Forms;
 
     public class ConnectionListViewItemMapper : 
@@ -21,13 +19,7 @@
                 connection.From.DepartureDateTime.ToString(Resources.ListViewDateTimeFormat));
             listViewItem.SubItems.Add(
                 connection.To.ArrivalDateTime.ToString(Resources.ListViewDateTimeFormat));
-           var timeSpan = connection.Duration == null
-                ? connection.To.ArrivalDateTime - connection.From.DepartureDateTime
-                : TimeSpan.ParseExact(
-                    connection.Duration.Replace('d', '.'),
-                    "c",
-                    CultureInfo.CurrentCulture);
-            var timeSpanValue = $@"{(timeSpan.Days != 0 ? $"{timeSpan.Days.ToString()}d" : string.Empty)} {(timeSpan.Hours != 0 ? $"{timeSpan.Hours.ToString()}h" : string.Empty)} {(timeSpan.Minutes != 0 ? $"{timeSpan.Minutes.ToString()}m" : string.Empty)}";
+            var timeSpanValue = connection.GetDurationString();
             listViewItem.SubItems.Add(timeSpanValue);
             listViewItem.SubItems.Add(string.IsNullOrEmpty(connection.From.Platform)
                 ? Resources.Empty

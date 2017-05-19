@@ -6,6 +6,6 @@ namespace SwissTransport.Model.Connection
     public class ConnectionCollection
     {
         [JsonProperty("connections")]
-        public List<TransportConnection> ConnectionList { get; set; } 
+        public List<TransportConnection> ConnectionList { get; set; }
     }
 }

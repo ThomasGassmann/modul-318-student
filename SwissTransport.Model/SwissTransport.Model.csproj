@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SwissTransport.Model</RootNamespace>
     <AssemblyName>SwissTransport.Model</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +48,7 @@
     <Compile Include="Connection\ConnectionPoint.cs" />
     <Compile Include="Connection\ConnectionCollection.cs" />
     <Compile Include="Common\Coordinate.cs" />
+    <Compile Include="Location\IPLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Station\TransportStation.cs" />
     <Compile Include="StationBoard\StationBoard.cs" />

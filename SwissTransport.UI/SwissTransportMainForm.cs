@@ -5,6 +5,8 @@
     using SwissTransport.Model.Station;
     using SwissTransport.Model.StationBoard;
     using SwissTransport.UI.ActionHandlers;
+    using SwissTransport.UI.Common;
+    using SwissTransport.UI.Common.Interfaces;
     using SwissTransport.UI.Validation;
     using SwissTransport.UI.ViewModels;
     using System;
@@ -17,7 +19,11 @@
     {
         private readonly IQueryService queryService = new TransportationQueryService();
 
-        private readonly IActionHandler actionHandler = new ActionHandler();
+        private readonly IActionHandler actionHandler;
+
+        private readonly ILocationQueryService locationQueryService = new LocationQueryService();
+
+        private readonly ILocatableStationService locatableStationService;
 
         private readonly static object lockObj = new object();
 
@@ -28,6 +34,10 @@
         {
             this.InitializeComponent();
             this.lvStations.Columns[0].Width = this.lvStations.Width - 10;
+            this.actionHandler = new ActionHandler(this);
+            this.locatableStationService = new LocatableStationService(
+                this.locationQueryService,
+                this.queryService);
         }
 
         private void ShowExtendedOptions_CheckedChanged(object sender, System.EventArgs e) =>
@@ -47,7 +57,8 @@
             {
                 if (cb.Text == string.Empty)
                 {
-                    /// No need for execution, if the <see cref="ComboBox"/> is empty
+                    /// Only load current location, if the <see cref="ComboBox"/> is empty
+                    await this.actionHandler.HandleFunc(async () => await this.LoadCurrentLocationIntoComboboxes(cb));
                     return;
                 }
 
@@ -63,9 +74,20 @@
                     return;
                 }
 
-                var selectedViewModels = stations.StationList
-                    .MapCollection<TransportStation, ComboboxItemViewModel<TransportStation>>();
-                cb.DataSource = selectedViewModels.ToArray();
+                var viewModels = await Task.Run(() => this.actionHandler.HandleFunc(async () =>
+                {
+                    var selectedViewModels = stations.StationList
+                        .MapCollection<TransportStation, ComboboxItemViewModel<TransportStation>>().ToList();
+                    var currentLocation = await this.actionHandler.HandleFunc(async () => await this.GetCurrentLocationComboboxViewModel());
+                    if (currentLocation != null)
+                    {
+                        selectedViewModels.Add(currentLocation);
+                    }
+
+                    return selectedViewModels;
+                }));
+
+                cb.DataSource = viewModels;
                 cb.Text = comboBoxText;
                 cb.SelectionStart = selectionStart;
                 cb.SelectionLength = length;
@@ -82,40 +104,80 @@
                 var button = sender as Button;
                 button.Enabled = false;
                 this.lvConnections.Items.Clear();
-                this.pbConnectionSearch.MarqueeAnimationSpeed = 100;
-                this.pbConnectionSearch.Style = ProgressBarStyle.Marquee;
-                var fromStationViewModel = (ComboboxItemViewModel<TransportStation>)this.cbDeparture.SelectedItem;
-                var toStationViewModel = (ComboboxItemViewModel<TransportStation>)this.cbArrival.SelectedItem;
-                var constructedDateTime = this.cbShowExtendedOptions.Checked
-                    ? this.ConstructDateTime(this.dtpConnectionSearchDate, this.dtpConnectionSearchTime)
-                    : DateTime.Now;
-                var fromStationId = fromStationViewModel.Value.Id;
-                var toStationId = toStationViewModel.Value.Id;
-                var isArrivalTime = this.rbArrivalTime.Checked;
-                var connections = await Task.Run(() => 
-                    this.actionHandler.HandleFunc(() =>
-                        this.queryService.GetConnections(fromStationId, toStationId, constructedDateTime, isArrivalTime)));
-                var viewModels = connections.ConnectionList
-                    .MapCollection<TransportConnection, ListViewItem>();
-                this.lvConnections.Items.AddRange(viewModels.ToArray());
-                this.pbConnectionSearch.Style = ProgressBarStyle.Blocks;
-                this.ValidateConnectionSearchButton();
+                using (new ProgressBarRunner(this.pbConnectionSearch, this.ValidateConnectionSearchButton))
+                {
+                    var fromStationViewModel = (ComboboxItemViewModel<TransportStation>)this.cbDeparture.SelectedItem;
+                    var toStationViewModel = (ComboboxItemViewModel<TransportStation>)this.cbArrival.SelectedItem;
+                    var constructedDateTime = this.cbShowExtendedOptions.Checked
+                        ? this.ConstructDateTime(this.dtpConnectionSearchDate, this.dtpConnectionSearchTime)
+                        : DateTime.Now;
+                    var fromStationId = fromStationViewModel.Value.Id;
+                    var toStationId = toStationViewModel.Value.Id;
+                    var isArrivalTime = this.rbArrivalTime.Checked;
+                    var connections = await Task.Run(() =>
+                        this.actionHandler.HandleFunc(() =>
+                            this.queryService.GetConnections(fromStationId, toStationId, constructedDateTime, isArrivalTime)));
+                    if (connections == null)
+                    {
+                        return;
+                    }
+
+                    var viewModels = connections.ConnectionList
+                        .MapCollection<TransportConnection, ListViewItem>();
+                    this.lvConnections.Items.AddRange(viewModels.ToArray());
+                }
             }
         }
 
         private async void StationSearch_Click(object sender, EventArgs e)
         {
-            this.pbStationSearch.Style = ProgressBarStyle.Marquee;
-            this.lvStations.Items.Clear();
-            var textBoxValue = this.tbSearchStation.Text;
-            var stationResult = await Task.Run(() =>
-                this.actionHandler.HandleFunc(() =>
-                    this.queryService.GetStations(textBoxValue)));
-            var stations = this.actionHandler.HandleFunc(
-                () => stationResult.StationList.MapCollection<TransportStation, ListViewItem>().ToArray(),
-                exception => MessageBox.Show("Die Daten der API scheinen invalid zu sein. Bitte überprüfen Sie ihre Internetverbindung."));
-            this.lvStations.Items.AddRange(stations);
-            this.pbStationSearch.Style = ProgressBarStyle.Blocks;
+            this.btStationSearch.Enabled = false;
+            using (new ProgressBarRunner(this.pbStationSearch, this.ValidateSearchStationButton))
+            {
+                this.lvStations.Items.Clear();
+                var textBoxValue = this.tbSearchStation.Text;
+                var stationResult = await Task.Run(() =>
+                    this.actionHandler.HandleFunc(
+                        () => this.queryService.GetStations(textBoxValue)));
+                if (stationResult == null)
+                {
+                    return;
+                }
+
+                var stations = this.actionHandler.HandleFunc(
+                    () => stationResult.StationList.MapCollection<TransportStation, ListViewItem>().ToArray(),
+                    exception => MessageBox.Show("Die Daten der API scheinen invalid zu sein. Bitte überprüfen Sie ihre Internetverbindung."));
+                this.lvStations.Items.AddRange(stations);
+            }
+        }
+
+        private async void SearchStationBoard_Click(object sender, EventArgs e)
+        {
+            if (this.cbSearchStationBoard.SelectedItem != null &&
+                this.IsValidStationBoardStation())
+            {
+                this.lvStationBoard.Items.Clear();
+                this.btSearchStationBoard.Enabled = false;
+                using (new ProgressBarRunner(this.pbStationBoard, this.ValidateStationBoardDisplayButton))
+                {
+                    var station = (ComboboxItemViewModel<TransportStation>)this.cbSearchStationBoard.SelectedItem;
+                    var stationId = station.Value.Id;
+                    var constructedDateTime = this.cbMoreStationBoardOptions.Checked
+                        ? this.ConstructDateTime(this.dtpStationBoardDate, this.dtpStationBoardTime)
+                        : DateTime.Now;
+                    var stationBoard = await Task.Run(() =>
+                        this.actionHandler.HandleFunc(() =>
+                            this.queryService.GetStationBoard(stationId, constructedDateTime)));
+                    if (stationBoard == null)
+                    {
+                        return;
+                    }
+
+                    var listViewItems = await Task.Run(() => this.actionHandler.HandleFunc(() =>
+                        stationBoard.Map<StationBoardRoot, IEnumerable<ListViewItem>>().ToArray()));
+                    this.lvStationBoard.Items.AddRange(listViewItems);
+                }
+            }
         }
 
         private DateTime ConstructDateTime(DateTimePicker datePicker, DateTimePicker timePicker) =>
@@ -136,23 +198,22 @@
             ComboboxValidater.ContainValidLocations(this.cbArrival, this.cbDeparture);
         
         private void ValidateStationBoardDisplayButton() =>
-            this.btSearchStationBoard.Enabled = this.IsValidStationBoardStation()
+            this.btSearchStationBoard.Enabled = this.IsValidStationBoardStation() && this.pbStationBoard.Style != ProgressBarStyle.Marquee
                 ? true
                 : false;
 
         private void ValidateConnectionSearchButton() =>
-            this.btSearchConnections.Enabled = this.AreValidConnectionStationsSelected()
+            this.btSearchConnections.Enabled = this.AreValidConnectionStationsSelected() && this.pbConnectionSearch.Style != ProgressBarStyle.Marquee
                 ? true
                 : false;
 
-        private void SearchStation_TextChanged(object sender, EventArgs e)
-        {
-            this.btStationSearch.Enabled = false;
-            if (this.tbSearchStation.Text != string.Empty)
-            {
-                this.btStationSearch.Enabled = true;
-            }
-        }
+        private void ValidateSearchStationButton() =>
+            this.btStationSearch.Enabled = this.tbSearchStation.Text != string.Empty && this.pbStationSearch.Style != ProgressBarStyle.Marquee
+                ? true
+                : false;
+
+        private void SearchStation_TextChanged(object sender, EventArgs e) =>
+            this.ValidateSearchStationButton();
 
         private void Stations_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
@@ -173,28 +234,37 @@
             }
         }
 
-        private async void SearchStationBoard_Click(object sender, EventArgs e)
+        private async void TabControl_SelectedIndexChanged(object sender, EventArgs e) =>
+            await this.LoadCurrentLocationIntoComboboxes(this.cbDeparture, this.cbSearchStationBoard);
+
+        private async Task<ComboboxItemViewModel<TransportStation>> GetCurrentLocationComboboxViewModel()
         {
-            if (this.cbSearchStationBoard.SelectedItem != null &&
-                this.IsValidStationBoardStation())
+            var closeLocation = await Task.Run(() => this.actionHandler.HandleFunc(
+                () => this.locatableStationService.GetClosestStation(),
+                exception => { }));
+            if (closeLocation != null)
             {
-                this.btSearchStationBoard.Enabled = false;
-                this.pbStationBoard.Style = ProgressBarStyle.Marquee;
-                var station = (ComboboxItemViewModel<TransportStation>)this.cbSearchStationBoard.SelectedItem;
-                var stationId = station.Value.Id;
-                var constructedDateTime = this.cbMoreStationBoardOptions.Checked
-                    ? this.ConstructDateTime(this.dtpConnectionSearchDate, this.dtpConnectionSearchTime)
-                    : DateTime.Now;
-                var stationBoard = await Task.Run(() =>
-                    this.actionHandler.HandleFunc(() =>
-                        this.queryService.GetStationBoard(stationId, constructedDateTime)));
-                var listViewItems = this.actionHandler.HandleFunc(() =>
-                    stationBoard.Map<StationBoardRoot, IEnumerable<ListViewItem>>().ToArray(),
-                    exception => MessageBox.Show("Die Daten der API scheinen invalid zu sein. Bitte überprüfen Sie ihre Internetverbindung."));
-                this.lvStationBoard.Items.AddRange(listViewItems);
-                this.pbStationBoard.Style = ProgressBarStyle.Blocks;
-                this.ValidateStationBoardDisplayButton();
+                var viewModel = new ComboboxItemViewModel<TransportStation>(closeLocation, x => $"Aktueller Standort: {x.Name}");
+                return viewModel;
+            }
+
+            return null;
+        }
+
+        private async Task LoadCurrentLocationIntoComboboxes(params ComboBox[] comboBoxesToApply)
+        {
+            var closeLocation = await this.GetCurrentLocationComboboxViewModel();
+            if (closeLocation != null)
+            {
+                foreach (var comboBox in comboBoxesToApply)
+                {
+                    comboBox.DataSource = new List<ComboboxItemViewModel<TransportStation>> { closeLocation };
+                    comboBox.SelectedIndex = 0;
+                }
             }
         }
+
+        private async void SwissTransportMainForm_Load(object sender, EventArgs e) =>
+            await this.LoadCurrentLocationIntoComboboxes(this.cbDeparture, this.cbSearchStationBoard);
     }
 }

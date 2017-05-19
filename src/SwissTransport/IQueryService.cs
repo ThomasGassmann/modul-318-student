@@ -9,6 +9,8 @@
     {
         StationCollection GetStations(string query);
 
+        StationCollection GetStationsNear(double x, double y);
+
         StationBoardRoot GetStationBoard(string id, DateTime dateTime);
 
         StationBoardRoot GetStationBoardByName(string name, DateTime dateTime);

@@ -1,32 +1,22 @@
 ﻿namespace SwissTransport.DataAccess
 {
-    using System.IO;
-    using System.Net;
     using Newtonsoft.Json;
+    using SwissTransport.Model.Connection;
     using SwissTransport.Model.Station;
     using SwissTransport.Model.StationBoard;
-    using SwissTransport.Model.Connection;
     using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
 
     public class TransportationQueryService : IQueryService
     {
-        // TODO: Implement caching to prevent 429
-        public StationCollection GetStations(string query)
-        {
-            var request = TransportationQueryService.CreateWebRequest(
-                $"http://transport.opendata.ch/v1/locations?query={query}");
-            var response = request.GetResponse();
-            var responseStream = response.GetResponseStream();
+        public StationCollection GetStations(string query) =>
+            this.GetStations(new KeyValuePair<string, string>("query", query));
 
-            if (responseStream != null)
-            {
-                var message = new StreamReader(responseStream).ReadToEnd();
-                var stations = JsonConvert.DeserializeObject<StationCollection>(message);
-                return stations;
-            }
-
-            return null;
-        }
+        public StationCollection GetStationsNear(double x, double y) =>
+            this.GetStations(new KeyValuePair<string, string>("x", x.ToString()), new KeyValuePair<string, string>("y", y.ToString()));
 
         public StationBoardRoot GetStationBoard(string id, DateTime dateTime) =>
             this.GetStationBoard("id", id, dateTime);
@@ -83,6 +73,24 @@
                 var stationboard =
                     JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
                 return stationboard;
+            }
+
+            return null;
+        }
+
+        public StationCollection GetStations(params KeyValuePair<string, string>[] parameters)
+        {
+            var parameterString = string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"));
+            var request = TransportationQueryService.CreateWebRequest(
+                $"http://transport.opendata.ch/v1/locations?{parameterString}");
+            var response = request.GetResponse();
+            var responseStream = response.GetResponseStream();
+
+            if (responseStream != null)
+            {
+                var message = new StreamReader(responseStream).ReadToEnd();
+                var stations = JsonConvert.DeserializeObject<StationCollection>(message);
+                return stations;
             }
 
             return null;
