@@ -12,7 +12,7 @@
             this.uiForm = form;
 
         public T HandleFunc<T>(Func<T> func) =>
-            this.HandleFunc<T>(func, this.ShowDefaultExceptionWindow);
+            this.HandleFunc(func, this.ShowDefaultExceptionWindow);
 
         public void HandleAction(Action action) =>
             this.HandleAction(action, this.ShowDefaultExceptionWindow);

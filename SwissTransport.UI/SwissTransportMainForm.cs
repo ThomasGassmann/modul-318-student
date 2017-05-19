@@ -104,7 +104,7 @@
                 var button = sender as Button;
                 button.Enabled = false;
                 this.lvConnections.Items.Clear();
-                using (new ProgressBarRunner(this.pbConnectionSearch, this.ValidateConnectionSearchButton))
+                using (new ProgressBarRunner(this.progressBar, this.ValidateConnectionSearchButton))
                 {
                     var fromStationViewModel = (ComboboxItemViewModel<TransportStation>)this.cbDeparture.SelectedItem;
                     var toStationViewModel = (ComboboxItemViewModel<TransportStation>)this.cbArrival.SelectedItem;
@@ -132,7 +132,7 @@
         private async void StationSearch_Click(object sender, EventArgs e)
         {
             this.btStationSearch.Enabled = false;
-            using (new ProgressBarRunner(this.pbStationSearch, this.ValidateSearchStationButton))
+            using (new ProgressBarRunner(this.progressBar, this.ValidateSearchStationButton))
             {
                 this.lvStations.Items.Clear();
                 var textBoxValue = this.tbSearchStation.Text;
@@ -158,7 +158,7 @@
             {
                 this.lvStationBoard.Items.Clear();
                 this.btSearchStationBoard.Enabled = false;
-                using (new ProgressBarRunner(this.pbStationBoard, this.ValidateStationBoardDisplayButton))
+                using (new ProgressBarRunner(this.progressBar, this.ValidateStationBoardDisplayButton))
                 {
                     var station = (ComboboxItemViewModel<TransportStation>)this.cbSearchStationBoard.SelectedItem;
                     var stationId = station.Value.Id;
@@ -198,17 +198,17 @@
             ComboboxValidater.ContainValidLocations(this.cbArrival, this.cbDeparture);
         
         private void ValidateStationBoardDisplayButton() =>
-            this.btSearchStationBoard.Enabled = this.IsValidStationBoardStation() && this.pbStationBoard.Style != ProgressBarStyle.Marquee
+            this.btSearchStationBoard.Enabled = this.IsValidStationBoardStation() && this.progressBar.Style != ProgressBarStyle.Marquee
                 ? true
                 : false;
 
         private void ValidateConnectionSearchButton() =>
-            this.btSearchConnections.Enabled = this.AreValidConnectionStationsSelected() && this.pbConnectionSearch.Style != ProgressBarStyle.Marquee
+            this.btSearchConnections.Enabled = this.AreValidConnectionStationsSelected() && this.progressBar.Style != ProgressBarStyle.Marquee
                 ? true
                 : false;
 
         private void ValidateSearchStationButton() =>
-            this.btStationSearch.Enabled = this.tbSearchStation.Text != string.Empty && this.pbStationSearch.Style != ProgressBarStyle.Marquee
+            this.btStationSearch.Enabled = this.tbSearchStation.Text != string.Empty && this.progressBar.Style != ProgressBarStyle.Marquee
                 ? true
                 : false;
 
@@ -234,8 +234,12 @@
             }
         }
 
-        private async void TabControl_SelectedIndexChanged(object sender, EventArgs e) =>
+        private async void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbSelectedTab.Text = ((TabControl)sender).SelectedTab.Text;
             await this.LoadCurrentLocationIntoComboboxes(this.cbDeparture, this.cbSearchStationBoard);
+        }
+
 
         private async Task<ComboboxItemViewModel<TransportStation>> GetCurrentLocationComboboxViewModel()
         {
