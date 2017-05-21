@@ -4,8 +4,10 @@
     using SwissTransport.Model.Location;
     using System.Net;
 
+    /// <inheritdoc />
     public class LocationQueryService : ILocationQueryService
     {
+        /// <inheritdoc />
         public IPLocation GetCurrentLocation()
         {
             using (var webClient = new WebClient())

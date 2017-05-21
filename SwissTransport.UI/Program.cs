@@ -1,15 +1,19 @@
 ﻿namespace SwissTransport.UI
 {
+    using SwissTransport.UI.Forms;
     using System;
     using System.Windows.Forms;
 
-    static class Program
+    /// <summary>
+    /// Defines the main entry point of the application.
+    /// </summary>
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

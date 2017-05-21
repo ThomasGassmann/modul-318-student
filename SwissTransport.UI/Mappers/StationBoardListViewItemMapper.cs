@@ -5,9 +5,13 @@
     using System.Collections.Generic;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Maps the station board root to a list of list view items.
+    /// </summary>
     public class StationBoardListViewItemMapper :
         IMapper<StationBoardRoot, IEnumerable<ListViewItem>>
     {
+        /// <inheritdoc />
         public IEnumerable<ListViewItem> Create(StationBoardRoot source)
         {
             foreach (var entry in source.Entries)

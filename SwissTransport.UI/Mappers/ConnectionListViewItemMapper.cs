@@ -5,9 +5,13 @@
     using SwissTransport.UI.Properties;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Maps transport connections to list view items.
+    /// </summary>
     public class ConnectionListViewItemMapper : 
         IMapper<TransportConnection, ListViewItem>
     {
+        /// <inheritdoc />
         public ListViewItem Create(
             TransportConnection connection)
         {

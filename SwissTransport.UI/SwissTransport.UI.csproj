@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -22,10 +23,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ProductName>SwissTransport</ProductName>
+    <PublisherName>Thomas Gassmann</PublisherName>
+    <SuiteName>Thomas Gassmann</SuiteName>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -47,6 +51,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>9E68FC0A2E61B993825984083EF47C19E47FB1C6</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SwissTransport.UI_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -71,23 +87,50 @@
     <Compile Include="Common\Interfaces\IProgressBarRunner.cs" />
     <Compile Include="Common\ProgressBarRunner.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Forms\SendMailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SendMailForm.Designer.cs">
+      <DependentUpon>SendMailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StationSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StationSelector.Designer.cs">
+      <DependentUpon>StationSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mappers\ConnectionListViewItemMapper.cs" />
     <Compile Include="Common\LocatableStationService.cs" />
     <Compile Include="Mappers\Interfaces\IMapper.cs" />
     <Compile Include="Mappers\StationBoardListViewItemMapper.cs" />
     <Compile Include="Mappers\TransportStationComboboxItemMapper.cs" />
     <Compile Include="Mappers\TransportStationListViewItemMapper.cs" />
-    <Compile Include="SwissTransportMainForm.cs">
+    <Compile Include="Forms\SwissTransportMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SwissTransportMainForm.Designer.cs">
+    <Compile Include="Forms\SwissTransportMainForm.Designer.cs">
       <DependentUpon>SwissTransportMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ComboboxValidater.cs" />
     <Compile Include="ViewModels\ComboboxItemViewModel.cs" />
-    <EmbeddedResource Include="SwissTransportMainForm.resx">
+    <EmbeddedResource Include="Forms\SendMailForm.resx">
+      <DependentUpon>SendMailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StationSelector.resx">
+      <DependentUpon>StationSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SwissTransportMainForm.resx">
       <DependentUpon>SwissTransportMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -110,6 +153,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SwissTransport.UI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -135,6 +179,39 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SelectIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SearchIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MailIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MailIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StationIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StationIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SettingsIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LocationIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LocationIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SettingsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloseIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

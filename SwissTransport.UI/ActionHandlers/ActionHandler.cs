@@ -1,22 +1,39 @@
 ﻿namespace SwissTransport.UI.ActionHandlers
 {
     using System;
+    using System.Diagnostics;
     using System.Net;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Defines an implementation of an <see cref="IActionHandler"/> which handles all actions 
+    /// coming from the UI and deal with unsafe (potentially invalid) user input.
+    /// </summary>
     public class ActionHandler : IActionHandler
     {
-        private readonly SwissTransportMainForm uiForm;
+        /// <summary>
+        /// Contains the UI form. This field is used to call actions on the UI thread.
+        /// For example <see cref="MessageBox"/> needs to be called on the UI thread, 
+        /// to display it modal.
+        /// </summary>
+        private readonly Form uiForm;
 
-        public ActionHandler(SwissTransportMainForm form) =>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ActionHandler"/> class. Sets the UI form.
+        /// </summary>
+        /// <param name="form">The form to invoke the UI actions on.</param>
+        public ActionHandler(Form form) =>
             this.uiForm = form;
 
+        /// <inheritdoc />
         public T HandleFunc<T>(Func<T> func) =>
             this.HandleFunc(func, this.ShowDefaultExceptionWindow);
 
+        /// <inheritdoc />
         public void HandleAction(Action action) =>
             this.HandleAction(action, this.ShowDefaultExceptionWindow);
 
+        /// <inheritdoc />
         public T HandleFunc<T>(Func<T> func, Action<Exception> exceptionHandler)
         {
             try
@@ -32,15 +49,24 @@
             return default(T);
         }
 
+        /// <inheritdoc />
         public void HandleAction(Action action, Action<Exception> exceptionHandler) =>
-            this.HandleFunc(() =>
+            this.HandleFunc(
+            () =>
             {
                 action();
+                //// Return 0, because the return value is not used.
                 return 0;
-            }, exceptionHandler);
+            }, 
+            exceptionHandler);
 
+        /// <summary>
+        /// Shows the default exception window for a given <see cref="Exception"/>.
+        /// </summary>
+        /// <param name="ex">The <see cref="Exception"/> to display the modal dialog for.</param>
         private void ShowDefaultExceptionWindow(Exception ex)
         {
+            Debug.WriteLine(ex.Message);
             var errorMessage = string.Empty;
             switch (ex)
             {
@@ -75,6 +101,7 @@
                     break;
             }
 
+            // Execute the action on the UI form, if possible.
             if (this.uiForm != null)
             {
                 this.uiForm.Invoke(new Action(() => MessageBox.Show(errorMessage)));
