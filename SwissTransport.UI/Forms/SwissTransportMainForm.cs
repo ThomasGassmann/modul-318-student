@@ -1,12 +1,12 @@
 ﻿namespace SwissTransport.UI.Forms
 {
     using SwissTransport.DataAccess;
+    using SwissTransport.DataAccess.Interfaces;
     using SwissTransport.Model.Connection;
     using SwissTransport.Model.Station;
     using SwissTransport.Model.StationBoard;
     using SwissTransport.UI.ActionHandlers;
     using SwissTransport.UI.Common;
-    using SwissTransport.UI.Common.Interfaces;
     using SwissTransport.UI.Validation;
     using SwissTransport.UI.ViewModels;
     using System;

@@ -1,4 +1,4 @@
-﻿namespace SwissTransport.DataAccess
+﻿namespace SwissTransport.DataAccess.Interfaces
 {
     using SwissTransport.Model.Location;
 

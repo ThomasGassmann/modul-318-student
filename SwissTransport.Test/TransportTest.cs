@@ -2,6 +2,7 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using SwissTransport.DataAccess;
+    using SwissTransport.DataAccess.Interfaces;
 
     [TestClass]
     public class TransportTest

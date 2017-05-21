@@ -1,10 +1,10 @@
 ﻿namespace SwissTransport.UI.Forms
 {
     using SwissTransport.DataAccess;
+    using SwissTransport.DataAccess.Interfaces;
     using SwissTransport.Model.Station;
     using SwissTransport.UI.ActionHandlers;
     using SwissTransport.UI.Common;
-    using SwissTransport.UI.Common.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;

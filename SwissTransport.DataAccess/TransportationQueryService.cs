@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using SwissTransport.DataAccess.Interfaces;
     using SwissTransport.Model.Connection;
     using SwissTransport.Model.Station;
     using SwissTransport.Model.StationBoard;

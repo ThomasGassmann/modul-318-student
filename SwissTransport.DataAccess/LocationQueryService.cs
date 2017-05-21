@@ -1,6 +1,7 @@
 ﻿namespace SwissTransport.DataAccess
 {
     using Newtonsoft.Json;
+    using SwissTransport.DataAccess.Interfaces;
     using SwissTransport.Model.Location;
     using System.Net;
 

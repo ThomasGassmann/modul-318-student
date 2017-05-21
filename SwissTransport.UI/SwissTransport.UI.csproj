@@ -83,7 +83,6 @@
   <ItemGroup>
     <Compile Include="ActionHandlers\ActionHandler.cs" />
     <Compile Include="ActionHandlers\IActionHandler.cs" />
-    <Compile Include="Common\Interfaces\ILocatableStationService.cs" />
     <Compile Include="Common\Interfaces\IProgressBarRunner.cs" />
     <Compile Include="Common\ProgressBarRunner.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
@@ -106,7 +105,6 @@
       <DependentUpon>StationSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Mappers\ConnectionListViewItemMapper.cs" />
-    <Compile Include="Common\LocatableStationService.cs" />
     <Compile Include="Mappers\Interfaces\IMapper.cs" />
     <Compile Include="Mappers\StationBoardListViewItemMapper.cs" />
     <Compile Include="Mappers\TransportStationComboboxItemMapper.cs" />

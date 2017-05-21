@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IQueryService.cs" />
-    <Compile Include="ILocationQueryService.cs" />
+    <Compile Include="Interfaces\ILocatableStationService.cs" />
+    <Compile Include="Interfaces\IQueryService.cs" />
+    <Compile Include="Interfaces\ILocationQueryService.cs" />
+    <Compile Include="LocatableStationService.cs" />
     <Compile Include="LocationQueryService.cs" />
     <Compile Include="TransportationQueryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

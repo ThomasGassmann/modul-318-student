@@ -1,4 +1,4 @@
-﻿namespace SwissTransport.UI.Common.Interfaces
+﻿namespace SwissTransport.DataAccess.Interfaces
 {
     using SwissTransport.Model.Station;
     using System.Collections.Generic;
