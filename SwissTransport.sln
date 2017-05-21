@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport.DataAccess", "src\SwissTransport\SwissTransport.DataAccess.csproj", "{D0262178-A48F-4DE0-807B-E76B63E39421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport.DataAccess", "SwissTransport.DataAccess\SwissTransport.DataAccess.csproj", "{D0262178-A48F-4DE0-807B-E76B63E39421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport.Test", "tests\SwissTransportTest\SwissTransport.Test.csproj", "{959C6E54-5B1C-40F5-938A-C57B17451421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport.Test", "SwissTransport.Test\SwissTransport.Test.csproj", "{959C6E54-5B1C-40F5-938A-C57B17451421}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport.UI", "SwissTransport.UI\SwissTransport.UI.csproj", "{FFAA13AF-CB4D-4A88-A86B-04F1F75665EB}"
 EndProject
