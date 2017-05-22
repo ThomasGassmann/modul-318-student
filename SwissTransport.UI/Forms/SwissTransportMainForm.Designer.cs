@@ -277,7 +277,7 @@ namespace SwissTransport.UI.Forms
             this.lvConnections.Location = new System.Drawing.Point(494, 6);
             this.lvConnections.Margin = new System.Windows.Forms.Padding(4);
             this.lvConnections.Name = "lvConnections";
-            this.lvConnections.Size = new System.Drawing.Size(1001, 711);
+            this.lvConnections.Size = new System.Drawing.Size(981, 711);
             this.lvConnections.TabIndex = 10;
             this.lvConnections.UseCompatibleStateImageBehavior = false;
             this.lvConnections.View = System.Windows.Forms.View.Details;
@@ -528,7 +528,7 @@ namespace SwissTransport.UI.Forms
             this.lvStationBoard.Location = new System.Drawing.Point(496, 4);
             this.lvStationBoard.Margin = new System.Windows.Forms.Padding(4);
             this.lvStationBoard.Name = "lvStationBoard";
-            this.lvStationBoard.Size = new System.Drawing.Size(921, 707);
+            this.lvStationBoard.Size = new System.Drawing.Size(979, 707);
             this.lvStationBoard.TabIndex = 7;
             this.lvStationBoard.UseCompatibleStateImageBehavior = false;
             this.lvStationBoard.View = System.Windows.Forms.View.Details;
@@ -637,14 +637,14 @@ namespace SwissTransport.UI.Forms
             this.groupBoxStationInformation.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxStationInformation.Name = "groupBoxStationInformation";
             this.groupBoxStationInformation.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxStationInformation.Size = new System.Drawing.Size(973, 676);
+            this.groupBoxStationInformation.Size = new System.Drawing.Size(971, 676);
             this.groupBoxStationInformation.TabIndex = 9;
             this.groupBoxStationInformation.TabStop = false;
             this.groupBoxStationInformation.Text = "Stationsinformationen";
             // 
             // tbDistance
             // 
-            this.tbDistance.Location = new System.Drawing.Point(282, 77);
+            this.tbDistance.Location = new System.Drawing.Point(282, 80);
             this.tbDistance.Margin = new System.Windows.Forms.Padding(4);
             this.tbDistance.Name = "tbDistance";
             this.tbDistance.ReadOnly = true;
@@ -654,7 +654,7 @@ namespace SwissTransport.UI.Forms
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(18, 80);
+            this.label10.Location = new System.Drawing.Point(18, 82);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(84, 25);
@@ -670,7 +670,7 @@ namespace SwissTransport.UI.Forms
             this.wbStations.Margin = new System.Windows.Forms.Padding(4);
             this.wbStations.MinimumSize = new System.Drawing.Size(20, 19);
             this.wbStations.Name = "wbStations";
-            this.wbStations.Size = new System.Drawing.Size(935, 525);
+            this.wbStations.Size = new System.Drawing.Size(933, 525);
             this.wbStations.TabIndex = 6;
             // 
             // tbStationLatitude
@@ -753,7 +753,7 @@ namespace SwissTransport.UI.Forms
             this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.MarqueeAnimationSpeed = 90;
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(254, 44);
+            this.progressBar.Size = new System.Drawing.Size(242, 44);
             this.progressBar.TabIndex = 3;
             // 
             // menuStrip1

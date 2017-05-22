@@ -2,6 +2,7 @@ namespace SwissTransport.Model.Connection
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using System;
 
     /// <summary>
     /// Defines a collection of connections.
