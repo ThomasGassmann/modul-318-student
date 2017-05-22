@@ -5,7 +5,7 @@
     /// <summary>
     /// Defines a location.
     /// </summary>
-    public class IPLocation
+    public class SwissTransportGeoLocation
     {
         /// <summary>
         /// Gets or sets the status of the result from the API.

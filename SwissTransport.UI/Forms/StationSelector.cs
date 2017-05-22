@@ -99,7 +99,11 @@
         private async void CloseToMe_Click(object sender, EventArgs e) =>
             await this.LoadStationListView(
                 () => this.locatableStationService.GetClosestStations(),
-                ex => MessageBox.Show("Der aktuelle Standort konnte nicht gefunden werden oder zu viele Requests wurden an den Server gestellt."));
+                ex => MessageBox.Show(
+                    "Der aktuelle Standort konnte nicht gefunden werden oder zu viele Requests wurden an den Server gestellt.",
+                    string.Empty,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error));
 
         /// <summary>
         /// Loads the found <see cref="TransportStation"/> into the <see cref="ListView"/>.

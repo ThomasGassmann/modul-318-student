@@ -38,15 +38,17 @@ namespace SwissTransport.UI.Forms
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btCloseToMe = new System.Windows.Forms.Button();
             this.lbSelectedStation = new System.Windows.Forms.Label();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btOk
             // 
             this.btOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btOk.Enabled = false;
-            this.btOk.Location = new System.Drawing.Point(389, 282);
+            this.btOk.Location = new System.Drawing.Point(778, 542);
+            this.btOk.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btOk.Name = "btOk";
-            this.btOk.Size = new System.Drawing.Size(75, 23);
+            this.btOk.Size = new System.Drawing.Size(150, 44);
             this.btOk.TabIndex = 4;
             this.btOk.Text = "OK";
             this.btOk.UseVisualStyleBackColor = true;
@@ -54,38 +56,43 @@ namespace SwissTransport.UI.Forms
             // btCancel
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(308, 282);
+            this.btCancel.Location = new System.Drawing.Point(616, 542);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(75, 23);
+            this.btCancel.Size = new System.Drawing.Size(150, 44);
             this.btCancel.TabIndex = 3;
             this.btCancel.Text = "Abbrechen";
             this.btCancel.UseVisualStyleBackColor = true;
             // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(12, 12);
+            this.tbSearch.Location = new System.Drawing.Point(24, 23);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(425, 20);
+            this.tbSearch.Size = new System.Drawing.Size(846, 31);
             this.tbSearch.TabIndex = 0;
             this.tbSearch.TextChanged += new System.EventHandler(this.Search_TextChanged);
             // 
             // progressStationSearch
             // 
-            this.progressStationSearch.Location = new System.Drawing.Point(227, 282);
+            this.progressStationSearch.Location = new System.Drawing.Point(454, 542);
+            this.progressStationSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.progressStationSearch.Name = "progressStationSearch";
-            this.progressStationSearch.Size = new System.Drawing.Size(75, 23);
+            this.progressStationSearch.Size = new System.Drawing.Size(150, 44);
             this.progressStationSearch.TabIndex = 4;
             // 
             // lvStations
             // 
             this.lvStations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader2});
             this.lvStations.FullRowSelect = true;
             this.lvStations.GridLines = true;
-            this.lvStations.Location = new System.Drawing.Point(12, 38);
+            this.lvStations.Location = new System.Drawing.Point(24, 73);
+            this.lvStations.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.lvStations.MultiSelect = false;
             this.lvStations.Name = "lvStations";
-            this.lvStations.Size = new System.Drawing.Size(452, 238);
+            this.lvStations.Size = new System.Drawing.Size(900, 454);
             this.lvStations.TabIndex = 2;
             this.lvStations.UseCompatibleStateImageBehavior = false;
             this.lvStations.View = System.Windows.Forms.View.Details;
@@ -95,15 +102,16 @@ namespace SwissTransport.UI.Forms
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 400;
+            this.columnHeader1.Width = 300;
             // 
             // btCloseToMe
             // 
             this.btCloseToMe.BackgroundImage = global::SwissTransport.UI.Properties.Resources.LocationIcon1;
             this.btCloseToMe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btCloseToMe.Location = new System.Drawing.Point(443, 12);
+            this.btCloseToMe.Location = new System.Drawing.Point(886, 23);
+            this.btCloseToMe.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btCloseToMe.Name = "btCloseToMe";
-            this.btCloseToMe.Size = new System.Drawing.Size(21, 21);
+            this.btCloseToMe.Size = new System.Drawing.Size(42, 40);
             this.btCloseToMe.TabIndex = 1;
             this.btCloseToMe.UseVisualStyleBackColor = true;
             this.btCloseToMe.Click += new System.EventHandler(this.CloseToMe_Click);
@@ -111,18 +119,24 @@ namespace SwissTransport.UI.Forms
             // lbSelectedStation
             // 
             this.lbSelectedStation.AutoSize = true;
-            this.lbSelectedStation.Location = new System.Drawing.Point(12, 287);
+            this.lbSelectedStation.Location = new System.Drawing.Point(24, 552);
+            this.lbSelectedStation.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbSelectedStation.Name = "lbSelectedStation";
-            this.lbSelectedStation.Size = new System.Drawing.Size(0, 13);
+            this.lbSelectedStation.Size = new System.Drawing.Size(0, 25);
             this.lbSelectedStation.TabIndex = 5;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Distanz";
+            this.columnHeader2.Width = 100;
             // 
             // StationSelector
             // 
             this.AcceptButton = this.btOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(476, 317);
+            this.ClientSize = new System.Drawing.Size(952, 610);
             this.Controls.Add(this.lbSelectedStation);
             this.Controls.Add(this.btCloseToMe);
             this.Controls.Add(this.lvStations);
@@ -132,6 +146,7 @@ namespace SwissTransport.UI.Forms
             this.Controls.Add(this.btOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "StationSelector";
@@ -153,5 +168,6 @@ namespace SwissTransport.UI.Forms
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btCloseToMe;
         private System.Windows.Forms.Label lbSelectedStation;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

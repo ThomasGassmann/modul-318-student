@@ -101,15 +101,15 @@
                     break;
             }
 
+            Action messageBoxInvocation = () => MessageBox.Show(
+                    errorMessage,
+                    string.Empty,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             // Execute the action on the UI form, if possible.
-            if (this.uiForm != null)
-            {
-                this.uiForm.Invoke(new Action(() => MessageBox.Show(errorMessage)));
-            }
-            else
-            {
-                MessageBox.Show(errorMessage);
-            }
+            (this.uiForm == null
+                ? x => this.uiForm.Invoke(x)
+                : new Action<Action>(x => x()))(messageBoxInvocation);
         }
     }
 }

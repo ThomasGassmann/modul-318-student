@@ -11,6 +11,7 @@
     using SwissTransport.UI.ViewModels;
     using System;
     using System.Collections.Generic;
+    using System.Device.Location;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Forms;
@@ -180,7 +181,11 @@
                 //// Get the view models and load them into the list view
                 var stations = this.actionHandler.HandleFunc(
                     () => stationResult.StationList.MapCollection<TransportStation, ListViewItem>().ToArray(),
-                    exception => MessageBox.Show("Die Daten der API scheinen invalid zu sein. Bitte überprüfen Sie ihre Internetverbindung."));
+                    exception => MessageBox.Show(
+                        "Die Daten der API scheinen invalid zu sein. Bitte überprüfen Sie ihre Internetverbindung.",
+                        string.Empty,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error));
                 if (stations != null)
                 {
                     this.lvStations.Items.AddRange(stations);
@@ -236,6 +241,15 @@
                 this.groupBoxStationInformation.Text = stationTag.Name;
                 this.tbStationLongitude.Text = stationTag.Coordinate.YCoordinate.ToString();
                 this.tbStationLatitude.Text = stationTag.Coordinate.XCoordinate.ToString();
+                var currentLocation = this.locationQueryService.GetCurrentLocation();
+                var currentGeoLocation = new GeoCoordinate(
+                    currentLocation.Latitude,
+                    currentLocation.Longitude);
+                var stationGeoLocation = new GeoCoordinate(
+                    stationTag.Coordinate.XCoordinate,
+                    stationTag.Coordinate.YCoordinate);
+                var distance = Math.Round(currentGeoLocation.GetDistanceTo(stationGeoLocation) / 1000, 0);
+                this.tbDistance.Text = $"{distance} km";
                 var gmapsUrl = $"http://bing.com/maps/default.aspx?cp={this.tbStationLatitude.Text}~{this.tbStationLongitude.Text}&lvl=20";
                 this.wbStations.Navigate(gmapsUrl);
             }
@@ -384,7 +398,11 @@
                 // Load stations close to the user
                 var stationsClose = await Task.Run(() => this.actionHandler.HandleFunc(
                     () => this.locatableStationService.GetClosestStations(),
-                    ex => MessageBox.Show("Ihr Standort konnte nicht gefunden werden oder es wurden zu viele Anfragen gemacht. Bitte versuchen Sie es später erneut.")));
+                    ex => MessageBox.Show(
+                        "Ihr Standort konnte nicht gefunden werden oder es wurden zu viele Anfragen gemacht. Bitte versuchen Sie es später erneut.",
+                        string.Empty,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error)));
                 if (stationsClose == null)
                 {
                     return;
@@ -421,7 +439,11 @@
             }
             else
             {
-                MessageBox.Show("Bitte suchen sie zuerst nach Verbindungen.");
+                MessageBox.Show(
+                    "Bitte suchen sie zuerst nach Verbindungen.",
+                    string.Empty,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
         }
 

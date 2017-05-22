@@ -103,8 +103,9 @@
         private StationBoardRoot GetStationBoard(string paramName, string paramValue, DateTime dateTime)
         {
             var formattedDateTime = dateTime.ToString("yyyy-MM-dd HH:mm").Replace(" ", "%20");
-            var request = TransportationQueryService.CreateWebRequest(
-                $"http://transport.opendata.ch/v1/stationboard?{paramName}={paramValue}&datetime={formattedDateTime}");
+            var query =
+                $"http://transport.opendata.ch/v1/stationboard?{paramName}={paramValue}&datetime={formattedDateTime}";
+            var request = TransportationQueryService.CreateWebRequest(query);
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
@@ -118,7 +119,7 @@
                     jsonObject["station"].Value<bool>();
                     parse = false;
                 }
-                catch (Exception)
+                catch (InvalidCastException)
                 {
                 }
 

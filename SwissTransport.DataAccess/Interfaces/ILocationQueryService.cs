@@ -11,6 +11,6 @@
         /// Calculates the current location by the IP address on the user's computer.
         /// </summary>
         /// <returns>Returns the location corresponding to the IP address.</returns>
-        IPLocation GetCurrentLocation();
+        SwissTransportGeoLocation GetCurrentLocation();
     }
 }

@@ -31,7 +31,6 @@ namespace SwissTransport.UI.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btSave = new System.Windows.Forms.Button();
             this.numSmtpPort = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
@@ -40,6 +39,7 @@ namespace SwissTransport.UI.Forms
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tbSmtpHost = new System.Windows.Forms.TextBox();
+            this.btSave = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSmtpPort)).BeginInit();
@@ -55,103 +55,115 @@ namespace SwissTransport.UI.Forms
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.tbSmtpHost);
-            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Location = new System.Drawing.Point(24, 23);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(375, 129);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox3.Size = new System.Drawing.Size(750, 248);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "SMTP";
             // 
-            // btSave
-            // 
-            this.btSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btSave.Location = new System.Drawing.Point(312, 147);
-            this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(75, 23);
-            this.btSave.TabIndex = 4;
-            this.btSave.Text = "Speichern";
-            this.btSave.UseVisualStyleBackColor = true;
-            this.btSave.Click += new System.EventHandler(this.Save_Click);
-            // 
             // numSmtpPort
             // 
-            this.numSmtpPort.Location = new System.Drawing.Point(104, 45);
+            this.numSmtpPort.Location = new System.Drawing.Point(208, 87);
+            this.numSmtpPort.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.numSmtpPort.Maximum = new decimal(new int[] {
             65565,
             0,
             0,
             0});
             this.numSmtpPort.Name = "numSmtpPort";
-            this.numSmtpPort.Size = new System.Drawing.Size(259, 20);
+            this.numSmtpPort.Size = new System.Drawing.Size(518, 31);
             this.numSmtpPort.TabIndex = 1;
             this.numSmtpPort.ValueChanged += new System.EventHandler(this.SmtpPort_ValueChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(21, 100);
+            this.label14.Location = new System.Drawing.Point(42, 192);
+            this.label14.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(50, 13);
+            this.label14.Size = new System.Drawing.Size(100, 25);
             this.label14.TabIndex = 7;
             this.label14.Text = "Passwort";
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(104, 97);
+            this.tbPassword.Location = new System.Drawing.Point(208, 187);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(259, 20);
+            this.tbPassword.Size = new System.Drawing.Size(514, 31);
             this.tbPassword.TabIndex = 3;
             this.tbPassword.TextChanged += new System.EventHandler(this.Password_TextChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(21, 74);
+            this.label13.Location = new System.Drawing.Point(42, 142);
+            this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(75, 13);
+            this.label13.Size = new System.Drawing.Size(151, 25);
             this.label13.TabIndex = 5;
             this.label13.Text = "Benutzername";
             // 
             // tbUserName
             // 
-            this.tbUserName.Location = new System.Drawing.Point(104, 71);
+            this.tbUserName.Location = new System.Drawing.Point(208, 137);
+            this.tbUserName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(259, 20);
+            this.tbUserName.Size = new System.Drawing.Size(514, 31);
             this.tbUserName.TabIndex = 2;
             this.tbUserName.TextChanged += new System.EventHandler(this.UserName_TextChanged);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(21, 48);
+            this.label12.Location = new System.Drawing.Point(42, 92);
+            this.label12.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 13);
+            this.label12.Size = new System.Drawing.Size(117, 25);
             this.label12.TabIndex = 3;
             this.label12.Text = "SMTP-Port";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 22);
+            this.label10.Location = new System.Drawing.Point(42, 42);
+            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 13);
+            this.label10.Size = new System.Drawing.Size(122, 25);
             this.label10.TabIndex = 1;
             this.label10.Text = "SMTP-Host";
             // 
             // tbSmtpHost
             // 
-            this.tbSmtpHost.Location = new System.Drawing.Point(104, 19);
+            this.tbSmtpHost.Location = new System.Drawing.Point(208, 37);
+            this.tbSmtpHost.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tbSmtpHost.Name = "tbSmtpHost";
-            this.tbSmtpHost.Size = new System.Drawing.Size(259, 20);
+            this.tbSmtpHost.Size = new System.Drawing.Size(514, 31);
             this.tbSmtpHost.TabIndex = 0;
             this.tbSmtpHost.TextChanged += new System.EventHandler(this.SmtpHost_TextChanged);
+            // 
+            // btSave
+            // 
+            this.btSave.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btSave.Location = new System.Drawing.Point(624, 283);
+            this.btSave.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(150, 44);
+            this.btSave.TabIndex = 4;
+            this.btSave.Text = "Speichern";
+            this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.Save_Click);
             // 
             // btCancel
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(231, 147);
+            this.btCancel.Location = new System.Drawing.Point(462, 283);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(75, 23);
+            this.btCancel.Size = new System.Drawing.Size(150, 44);
             this.btCancel.TabIndex = 4;
             this.btCancel.Text = "Abbrechen";
             this.btCancel.UseVisualStyleBackColor = true;
@@ -159,20 +171,21 @@ namespace SwissTransport.UI.Forms
             // SettingsForm
             // 
             this.AcceptButton = this.btSave;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(399, 176);
+            this.ClientSize = new System.Drawing.Size(798, 338);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.groupBox3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "SettingsForm";
+            this.Text = "Einstellungen";
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSmtpPort)).EndInit();

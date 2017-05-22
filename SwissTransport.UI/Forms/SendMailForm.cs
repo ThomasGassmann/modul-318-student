@@ -98,6 +98,17 @@
                 var to = this.tbMailTo.Text;
                 var body = this.tbMailBody.Text;
                 var title = this.tbTitle.Text;
+                if (to == string.Empty)
+                {
+                    MessageBox.Show(
+                        "Email Empfänger kann nicht leer sein.",
+                        string.Empty,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    this.canClose = false;
+                    return;
+                }
+
                 //// Handle the SMTP send action.
                 this.actionHandler.HandleAction(
                     () =>
@@ -116,7 +127,11 @@
                     },
                     ex =>
                     {
-                        MessageBox.Show("Die angegebenen Daten sind nicht valid. Bitte versuchen Sie es ernuet mit validen Daten.");
+                        MessageBox.Show(
+                            "Die angegebenen Daten sind nicht valid. Bitte versuchen Sie es erneut mit validen Daten.",
+                            string.Empty,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                         this.canClose = false;
                     });
             }

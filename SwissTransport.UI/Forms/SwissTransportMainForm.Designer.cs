@@ -50,6 +50,7 @@ namespace SwissTransport.UI.Forms
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btSelectArrivalStation = new System.Windows.Forms.Button();
             this.btSelectDepartureStation = new System.Windows.Forms.Button();
@@ -77,6 +78,8 @@ namespace SwissTransport.UI.Forms
             this.cbShowStationsNear = new System.Windows.Forms.Button();
             this.tbSearchStation = new System.Windows.Forms.TextBox();
             this.groupBoxStationInformation = new System.Windows.Forms.GroupBox();
+            this.tbDistance = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.wbStations = new System.Windows.Forms.WebBrowser();
             this.tbStationLatitude = new System.Windows.Forms.TextBox();
             this.tbStationLongitude = new System.Windows.Forms.TextBox();
@@ -113,11 +116,12 @@ namespace SwissTransport.UI.Forms
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Location = new System.Drawing.Point(0, 66);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl.Location = new System.Drawing.Point(0, 127);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(901, 510);
+            this.tabControl.Size = new System.Drawing.Size(1517, 772);
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
@@ -128,11 +132,11 @@ namespace SwissTransport.UI.Forms
             this.tabPage2.Controls.Add(this.cbShowExtendedOptions);
             this.tabPage2.Controls.Add(this.lvConnections);
             this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Location = new System.Drawing.Point(8, 39);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(893, 484);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Size = new System.Drawing.Size(1501, 725);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Verbindungen";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -141,10 +145,10 @@ namespace SwissTransport.UI.Forms
             // 
             this.btSearchConnections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btSearchConnections.Enabled = false;
-            this.btSearchConnections.Location = new System.Drawing.Point(9, 453);
-            this.btSearchConnections.Margin = new System.Windows.Forms.Padding(2);
+            this.btSearchConnections.Location = new System.Drawing.Point(19, 667);
+            this.btSearchConnections.Margin = new System.Windows.Forms.Padding(4);
             this.btSearchConnections.Name = "btSearchConnections";
-            this.btSearchConnections.Size = new System.Drawing.Size(230, 26);
+            this.btSearchConnections.Size = new System.Drawing.Size(460, 50);
             this.btSearchConnections.TabIndex = 9;
             this.btSearchConnections.Text = "Verbindungen suchen";
             this.btSearchConnections.UseVisualStyleBackColor = true;
@@ -159,11 +163,11 @@ namespace SwissTransport.UI.Forms
             this.gbExtendedOptions.Controls.Add(this.label4);
             this.gbExtendedOptions.Controls.Add(this.label3);
             this.gbExtendedOptions.Controls.Add(this.dtpConnectionSearchDate);
-            this.gbExtendedOptions.Location = new System.Drawing.Point(3, 156);
-            this.gbExtendedOptions.Margin = new System.Windows.Forms.Padding(2);
+            this.gbExtendedOptions.Location = new System.Drawing.Point(6, 300);
+            this.gbExtendedOptions.Margin = new System.Windows.Forms.Padding(4);
             this.gbExtendedOptions.Name = "gbExtendedOptions";
-            this.gbExtendedOptions.Padding = new System.Windows.Forms.Padding(2);
-            this.gbExtendedOptions.Size = new System.Drawing.Size(240, 173);
+            this.gbExtendedOptions.Padding = new System.Windows.Forms.Padding(4);
+            this.gbExtendedOptions.Size = new System.Drawing.Size(480, 333);
             this.gbExtendedOptions.TabIndex = 3;
             this.gbExtendedOptions.TabStop = false;
             this.gbExtendedOptions.Text = "Detail-Einstellungen";
@@ -173,20 +177,20 @@ namespace SwissTransport.UI.Forms
             // 
             this.dtpConnectionSearchTime.CustomFormat = "HH:mm";
             this.dtpConnectionSearchTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpConnectionSearchTime.Location = new System.Drawing.Point(6, 99);
-            this.dtpConnectionSearchTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpConnectionSearchTime.Location = new System.Drawing.Point(12, 190);
+            this.dtpConnectionSearchTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtpConnectionSearchTime.Name = "dtpConnectionSearchTime";
             this.dtpConnectionSearchTime.ShowUpDown = true;
-            this.dtpConnectionSearchTime.Size = new System.Drawing.Size(230, 20);
+            this.dtpConnectionSearchTime.Size = new System.Drawing.Size(456, 31);
             this.dtpConnectionSearchTime.TabIndex = 6;
             // 
             // rbArrivalTime
             // 
             this.rbArrivalTime.AutoSize = true;
-            this.rbArrivalTime.Location = new System.Drawing.Point(99, 146);
-            this.rbArrivalTime.Margin = new System.Windows.Forms.Padding(2);
+            this.rbArrivalTime.Location = new System.Drawing.Point(198, 281);
+            this.rbArrivalTime.Margin = new System.Windows.Forms.Padding(4);
             this.rbArrivalTime.Name = "rbArrivalTime";
-            this.rbArrivalTime.Size = new System.Drawing.Size(83, 17);
+            this.rbArrivalTime.Size = new System.Drawing.Size(161, 29);
             this.rbArrivalTime.TabIndex = 8;
             this.rbArrivalTime.TabStop = true;
             this.rbArrivalTime.Text = "Ankunftszeit";
@@ -196,10 +200,10 @@ namespace SwissTransport.UI.Forms
             // 
             this.rbDepartureTime.AutoSize = true;
             this.rbDepartureTime.Checked = true;
-            this.rbDepartureTime.Location = new System.Drawing.Point(6, 146);
-            this.rbDepartureTime.Margin = new System.Windows.Forms.Padding(2);
+            this.rbDepartureTime.Location = new System.Drawing.Point(12, 281);
+            this.rbDepartureTime.Margin = new System.Windows.Forms.Padding(4);
             this.rbDepartureTime.Name = "rbDepartureTime";
-            this.rbDepartureTime.Size = new System.Drawing.Size(80, 17);
+            this.rbDepartureTime.Size = new System.Drawing.Size(157, 29);
             this.rbDepartureTime.TabIndex = 7;
             this.rbDepartureTime.TabStop = true;
             this.rbDepartureTime.Text = "Abfahrtszeit";
@@ -208,48 +212,48 @@ namespace SwissTransport.UI.Forms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 125);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(6, 240);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 13);
+            this.label5.Size = new System.Drawing.Size(48, 25);
             this.label5.TabIndex = 4;
             this.label5.Text = "Typ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 77);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(6, 148);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 13);
+            this.label4.Size = new System.Drawing.Size(48, 25);
             this.label4.TabIndex = 3;
             this.label4.Text = "Zeit";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 28);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(6, 54);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(74, 25);
             this.label3.TabIndex = 1;
             this.label3.Text = "Datum";
             // 
             // dtpConnectionSearchDate
             // 
-            this.dtpConnectionSearchDate.Location = new System.Drawing.Point(6, 48);
-            this.dtpConnectionSearchDate.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpConnectionSearchDate.Location = new System.Drawing.Point(12, 92);
+            this.dtpConnectionSearchDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpConnectionSearchDate.Name = "dtpConnectionSearchDate";
-            this.dtpConnectionSearchDate.Size = new System.Drawing.Size(230, 20);
+            this.dtpConnectionSearchDate.Size = new System.Drawing.Size(456, 31);
             this.dtpConnectionSearchDate.TabIndex = 5;
             // 
             // cbShowExtendedOptions
             // 
             this.cbShowExtendedOptions.AutoSize = true;
-            this.cbShowExtendedOptions.Location = new System.Drawing.Point(9, 135);
-            this.cbShowExtendedOptions.Margin = new System.Windows.Forms.Padding(2);
+            this.cbShowExtendedOptions.Location = new System.Drawing.Point(18, 260);
+            this.cbShowExtendedOptions.Margin = new System.Windows.Forms.Padding(4);
             this.cbShowExtendedOptions.Name = "cbShowExtendedOptions";
-            this.cbShowExtendedOptions.Size = new System.Drawing.Size(142, 17);
+            this.cbShowExtendedOptions.Size = new System.Drawing.Size(280, 29);
             this.cbShowExtendedOptions.TabIndex = 4;
             this.cbShowExtendedOptions.Text = "Mehr Optionen anzeigen";
             this.cbShowExtendedOptions.UseVisualStyleBackColor = true;
@@ -266,13 +270,14 @@ namespace SwissTransport.UI.Forms
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader13});
+            this.columnHeader13,
+            this.columnHeader8});
             this.lvConnections.FullRowSelect = true;
             this.lvConnections.GridLines = true;
-            this.lvConnections.Location = new System.Drawing.Point(247, 3);
-            this.lvConnections.Margin = new System.Windows.Forms.Padding(2);
+            this.lvConnections.Location = new System.Drawing.Point(494, 6);
+            this.lvConnections.Margin = new System.Windows.Forms.Padding(4);
             this.lvConnections.Name = "lvConnections";
-            this.lvConnections.Size = new System.Drawing.Size(645, 476);
+            this.lvConnections.Size = new System.Drawing.Size(1001, 711);
             this.lvConnections.TabIndex = 10;
             this.lvConnections.UseCompatibleStateImageBehavior = false;
             this.lvConnections.View = System.Windows.Forms.View.Details;
@@ -307,6 +312,11 @@ namespace SwissTransport.UI.Forms
             this.columnHeader13.Text = "Ankunfts-Plattform";
             this.columnHeader13.Width = 110;
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Luftlinie";
+            this.columnHeader8.Width = 90;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btSelectArrivalStation);
@@ -315,11 +325,11 @@ namespace SwissTransport.UI.Forms
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cbArrival);
             this.groupBox1.Controls.Add(this.cbDeparture);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(240, 128);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(480, 246);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informationen";
@@ -328,9 +338,10 @@ namespace SwissTransport.UI.Forms
             // 
             this.btSelectArrivalStation.BackgroundImage = global::SwissTransport.UI.Properties.Resources.SelectIcon;
             this.btSelectArrivalStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btSelectArrivalStation.Location = new System.Drawing.Point(215, 91);
+            this.btSelectArrivalStation.Location = new System.Drawing.Point(430, 175);
+            this.btSelectArrivalStation.Margin = new System.Windows.Forms.Padding(6);
             this.btSelectArrivalStation.Name = "btSelectArrivalStation";
-            this.btSelectArrivalStation.Size = new System.Drawing.Size(21, 21);
+            this.btSelectArrivalStation.Size = new System.Drawing.Size(42, 40);
             this.btSelectArrivalStation.TabIndex = 3;
             this.btSelectArrivalStation.UseVisualStyleBackColor = true;
             this.btSelectArrivalStation.Click += new System.EventHandler(this.SelectArrivalStation_Click);
@@ -339,9 +350,10 @@ namespace SwissTransport.UI.Forms
             // 
             this.btSelectDepartureStation.BackgroundImage = global::SwissTransport.UI.Properties.Resources.SelectIcon;
             this.btSelectDepartureStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btSelectDepartureStation.Location = new System.Drawing.Point(215, 39);
+            this.btSelectDepartureStation.Location = new System.Drawing.Point(430, 75);
+            this.btSelectDepartureStation.Margin = new System.Windows.Forms.Padding(6);
             this.btSelectDepartureStation.Name = "btSelectDepartureStation";
-            this.btSelectDepartureStation.Size = new System.Drawing.Size(21, 21);
+            this.btSelectDepartureStation.Size = new System.Drawing.Size(42, 40);
             this.btSelectDepartureStation.TabIndex = 1;
             this.btSelectDepartureStation.UseVisualStyleBackColor = true;
             this.btSelectDepartureStation.Click += new System.EventHandler(this.SelectDepartureStation_Click);
@@ -349,30 +361,30 @@ namespace SwissTransport.UI.Forms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 76);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(8, 146);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(62, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "Nach";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 24);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(6, 46);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.Size = new System.Drawing.Size(50, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Von";
             // 
             // cbArrival
             // 
             this.cbArrival.FormattingEnabled = true;
-            this.cbArrival.Location = new System.Drawing.Point(6, 91);
-            this.cbArrival.Margin = new System.Windows.Forms.Padding(2);
+            this.cbArrival.Location = new System.Drawing.Point(12, 175);
+            this.cbArrival.Margin = new System.Windows.Forms.Padding(4);
             this.cbArrival.Name = "cbArrival";
-            this.cbArrival.Size = new System.Drawing.Size(204, 21);
+            this.cbArrival.Size = new System.Drawing.Size(404, 33);
             this.cbArrival.TabIndex = 2;
             this.cbArrival.DropDown += new System.EventHandler(this.LoadStationCombobox);
             this.cbArrival.SelectedIndexChanged += new System.EventHandler(this.ConnectionButtonValidation);
@@ -382,10 +394,10 @@ namespace SwissTransport.UI.Forms
             // cbDeparture
             // 
             this.cbDeparture.FormattingEnabled = true;
-            this.cbDeparture.Location = new System.Drawing.Point(6, 39);
-            this.cbDeparture.Margin = new System.Windows.Forms.Padding(2);
+            this.cbDeparture.Location = new System.Drawing.Point(12, 75);
+            this.cbDeparture.Margin = new System.Windows.Forms.Padding(4);
             this.cbDeparture.Name = "cbDeparture";
-            this.cbDeparture.Size = new System.Drawing.Size(204, 21);
+            this.cbDeparture.Size = new System.Drawing.Size(404, 33);
             this.cbDeparture.TabIndex = 0;
             this.cbDeparture.DropDown += new System.EventHandler(this.LoadStationCombobox);
             this.cbDeparture.SelectedIndexChanged += new System.EventHandler(this.ConnectionButtonValidation);
@@ -402,11 +414,11 @@ namespace SwissTransport.UI.Forms
             this.tabPage1.Controls.Add(this.btSearchStationBoard);
             this.tabPage1.Controls.Add(this.cbSearchStationBoard);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Location = new System.Drawing.Point(8, 39);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(893, 484);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Size = new System.Drawing.Size(1501, 725);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Abfahrtstafel";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -415,9 +427,10 @@ namespace SwissTransport.UI.Forms
             // 
             this.btSelectStationBoardStation.BackgroundImage = global::SwissTransport.UI.Properties.Resources.SelectIcon;
             this.btSelectStationBoardStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btSelectStationBoardStation.Location = new System.Drawing.Point(219, 28);
+            this.btSelectStationBoardStation.Location = new System.Drawing.Point(438, 54);
+            this.btSelectStationBoardStation.Margin = new System.Windows.Forms.Padding(6);
             this.btSelectStationBoardStation.Name = "btSelectStationBoardStation";
-            this.btSelectStationBoardStation.Size = new System.Drawing.Size(21, 21);
+            this.btSelectStationBoardStation.Size = new System.Drawing.Size(42, 40);
             this.btSelectStationBoardStation.TabIndex = 1;
             this.btSelectStationBoardStation.UseVisualStyleBackColor = true;
             this.btSelectStationBoardStation.Click += new System.EventHandler(this.SelectStationBoardStation_Click);
@@ -425,9 +438,10 @@ namespace SwissTransport.UI.Forms
             // cbAutoRefreshStationBoard
             // 
             this.cbAutoRefreshStationBoard.AutoSize = true;
-            this.cbAutoRefreshStationBoard.Location = new System.Drawing.Point(7, 54);
+            this.cbAutoRefreshStationBoard.Location = new System.Drawing.Point(14, 104);
+            this.cbAutoRefreshStationBoard.Margin = new System.Windows.Forms.Padding(6);
             this.cbAutoRefreshStationBoard.Name = "cbAutoRefreshStationBoard";
-            this.cbAutoRefreshStationBoard.Size = new System.Drawing.Size(114, 17);
+            this.cbAutoRefreshStationBoard.Size = new System.Drawing.Size(225, 29);
             this.cbAutoRefreshStationBoard.TabIndex = 2;
             this.cbAutoRefreshStationBoard.Text = "Auto-Refresh (10s)";
             this.cbAutoRefreshStationBoard.UseVisualStyleBackColor = true;
@@ -439,11 +453,11 @@ namespace SwissTransport.UI.Forms
             this.gbMoreStationOptions.Controls.Add(this.dtpStationBoardDate);
             this.gbMoreStationOptions.Controls.Add(this.label11);
             this.gbMoreStationOptions.Controls.Add(this.dtpStationBoardTime);
-            this.gbMoreStationOptions.Location = new System.Drawing.Point(2, 95);
-            this.gbMoreStationOptions.Margin = new System.Windows.Forms.Padding(2);
+            this.gbMoreStationOptions.Location = new System.Drawing.Point(4, 183);
+            this.gbMoreStationOptions.Margin = new System.Windows.Forms.Padding(4);
             this.gbMoreStationOptions.Name = "gbMoreStationOptions";
-            this.gbMoreStationOptions.Padding = new System.Windows.Forms.Padding(2);
-            this.gbMoreStationOptions.Size = new System.Drawing.Size(242, 114);
+            this.gbMoreStationOptions.Padding = new System.Windows.Forms.Padding(4);
+            this.gbMoreStationOptions.Size = new System.Drawing.Size(484, 219);
             this.gbMoreStationOptions.TabIndex = 12;
             this.gbMoreStationOptions.TabStop = false;
             this.gbMoreStationOptions.Text = "Mehr Optionen";
@@ -452,28 +466,28 @@ namespace SwissTransport.UI.Forms
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(2, 22);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(4, 42);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 13);
+            this.label7.Size = new System.Drawing.Size(74, 25);
             this.label7.TabIndex = 4;
             this.label7.Text = "Datum";
             // 
             // dtpStationBoardDate
             // 
-            this.dtpStationBoardDate.Location = new System.Drawing.Point(5, 37);
-            this.dtpStationBoardDate.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpStationBoardDate.Location = new System.Drawing.Point(10, 71);
+            this.dtpStationBoardDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpStationBoardDate.Name = "dtpStationBoardDate";
-            this.dtpStationBoardDate.Size = new System.Drawing.Size(233, 20);
+            this.dtpStationBoardDate.Size = new System.Drawing.Size(462, 31);
             this.dtpStationBoardDate.TabIndex = 4;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(2, 72);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(4, 138);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(25, 13);
+            this.label11.Size = new System.Drawing.Size(48, 25);
             this.label11.TabIndex = 10;
             this.label11.Text = "Zeit";
             // 
@@ -481,20 +495,20 @@ namespace SwissTransport.UI.Forms
             // 
             this.dtpStationBoardTime.CustomFormat = "HH:mm";
             this.dtpStationBoardTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStationBoardTime.Location = new System.Drawing.Point(5, 87);
-            this.dtpStationBoardTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpStationBoardTime.Location = new System.Drawing.Point(10, 167);
+            this.dtpStationBoardTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtpStationBoardTime.Name = "dtpStationBoardTime";
             this.dtpStationBoardTime.ShowUpDown = true;
-            this.dtpStationBoardTime.Size = new System.Drawing.Size(233, 20);
+            this.dtpStationBoardTime.Size = new System.Drawing.Size(462, 31);
             this.dtpStationBoardTime.TabIndex = 5;
             // 
             // cbMoreStationBoardOptions
             // 
             this.cbMoreStationBoardOptions.AutoSize = true;
-            this.cbMoreStationBoardOptions.Location = new System.Drawing.Point(7, 74);
-            this.cbMoreStationBoardOptions.Margin = new System.Windows.Forms.Padding(2);
+            this.cbMoreStationBoardOptions.Location = new System.Drawing.Point(14, 142);
+            this.cbMoreStationBoardOptions.Margin = new System.Windows.Forms.Padding(4);
             this.cbMoreStationBoardOptions.Name = "cbMoreStationBoardOptions";
-            this.cbMoreStationBoardOptions.Size = new System.Drawing.Size(142, 17);
+            this.cbMoreStationBoardOptions.Size = new System.Drawing.Size(280, 29);
             this.cbMoreStationBoardOptions.TabIndex = 3;
             this.cbMoreStationBoardOptions.Text = "Mehr Optionen anzeigen";
             this.cbMoreStationBoardOptions.UseVisualStyleBackColor = true;
@@ -511,10 +525,10 @@ namespace SwissTransport.UI.Forms
             this.columnHeader11});
             this.lvStationBoard.FullRowSelect = true;
             this.lvStationBoard.GridLines = true;
-            this.lvStationBoard.Location = new System.Drawing.Point(248, 2);
-            this.lvStationBoard.Margin = new System.Windows.Forms.Padding(2);
+            this.lvStationBoard.Location = new System.Drawing.Point(496, 4);
+            this.lvStationBoard.Margin = new System.Windows.Forms.Padding(4);
             this.lvStationBoard.Name = "lvStationBoard";
-            this.lvStationBoard.Size = new System.Drawing.Size(643, 478);
+            this.lvStationBoard.Size = new System.Drawing.Size(921, 707);
             this.lvStationBoard.TabIndex = 7;
             this.lvStationBoard.UseCompatibleStateImageBehavior = false;
             this.lvStationBoard.View = System.Windows.Forms.View.Details;
@@ -538,10 +552,10 @@ namespace SwissTransport.UI.Forms
             // 
             this.btSearchStationBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btSearchStationBoard.Enabled = false;
-            this.btSearchStationBoard.Location = new System.Drawing.Point(7, 454);
-            this.btSearchStationBoard.Margin = new System.Windows.Forms.Padding(2);
+            this.btSearchStationBoard.Location = new System.Drawing.Point(14, 664);
+            this.btSearchStationBoard.Margin = new System.Windows.Forms.Padding(4);
             this.btSearchStationBoard.Name = "btSearchStationBoard";
-            this.btSearchStationBoard.Size = new System.Drawing.Size(233, 26);
+            this.btSearchStationBoard.Size = new System.Drawing.Size(466, 50);
             this.btSearchStationBoard.TabIndex = 6;
             this.btSearchStationBoard.Text = "Anzeigen";
             this.btSearchStationBoard.UseVisualStyleBackColor = true;
@@ -550,10 +564,10 @@ namespace SwissTransport.UI.Forms
             // cbSearchStationBoard
             // 
             this.cbSearchStationBoard.FormattingEnabled = true;
-            this.cbSearchStationBoard.Location = new System.Drawing.Point(7, 28);
-            this.cbSearchStationBoard.Margin = new System.Windows.Forms.Padding(2);
+            this.cbSearchStationBoard.Location = new System.Drawing.Point(14, 54);
+            this.cbSearchStationBoard.Margin = new System.Windows.Forms.Padding(4);
             this.cbSearchStationBoard.Name = "cbSearchStationBoard";
-            this.cbSearchStationBoard.Size = new System.Drawing.Size(207, 21);
+            this.cbSearchStationBoard.Size = new System.Drawing.Size(410, 33);
             this.cbSearchStationBoard.TabIndex = 0;
             this.cbSearchStationBoard.DropDown += new System.EventHandler(this.LoadStationCombobox);
             this.cbSearchStationBoard.SelectedIndexChanged += new System.EventHandler(this.StationBoardDisplayButtonValidation);
@@ -563,10 +577,10 @@ namespace SwissTransport.UI.Forms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 13);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(14, 25);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.Size = new System.Drawing.Size(79, 25);
             this.label6.TabIndex = 1;
             this.label6.Text = "Station";
             // 
@@ -578,20 +592,21 @@ namespace SwissTransport.UI.Forms
             this.tabPage3.Controls.Add(this.lvStations);
             this.tabPage3.Controls.Add(this.btStationSearch);
             this.tabPage3.Controls.Add(this.label8);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage3.Location = new System.Drawing.Point(8, 39);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage3.Size = new System.Drawing.Size(893, 484);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Size = new System.Drawing.Size(1501, 725);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Stationen";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // cbShowStationsNear
             // 
-            this.cbShowStationsNear.Location = new System.Drawing.Point(64, 34);
+            this.cbShowStationsNear.Location = new System.Drawing.Point(128, 65);
+            this.cbShowStationsNear.Margin = new System.Windows.Forms.Padding(6);
             this.cbShowStationsNear.Name = "cbShowStationsNear";
-            this.cbShowStationsNear.Size = new System.Drawing.Size(101, 23);
+            this.cbShowStationsNear.Size = new System.Drawing.Size(202, 44);
             this.cbShowStationsNear.TabIndex = 1;
             this.cbShowStationsNear.Text = "In der Nähe";
             this.cbShowStationsNear.UseVisualStyleBackColor = true;
@@ -599,10 +614,10 @@ namespace SwissTransport.UI.Forms
             // 
             // tbSearchStation
             // 
-            this.tbSearchStation.Location = new System.Drawing.Point(64, 11);
-            this.tbSearchStation.Margin = new System.Windows.Forms.Padding(2);
+            this.tbSearchStation.Location = new System.Drawing.Point(128, 21);
+            this.tbSearchStation.Margin = new System.Windows.Forms.Padding(4);
             this.tbSearchStation.Name = "tbSearchStation";
-            this.tbSearchStation.Size = new System.Drawing.Size(178, 20);
+            this.tbSearchStation.Size = new System.Drawing.Size(352, 31);
             this.tbSearchStation.TabIndex = 0;
             this.tbSearchStation.TextChanged += new System.EventHandler(this.SearchStation_TextChanged);
             this.tbSearchStation.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchStation_KeyUp);
@@ -612,56 +627,77 @@ namespace SwissTransport.UI.Forms
             this.groupBoxStationInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxStationInformation.Controls.Add(this.tbDistance);
+            this.groupBoxStationInformation.Controls.Add(this.label10);
             this.groupBoxStationInformation.Controls.Add(this.wbStations);
             this.groupBoxStationInformation.Controls.Add(this.tbStationLatitude);
             this.groupBoxStationInformation.Controls.Add(this.tbStationLongitude);
             this.groupBoxStationInformation.Controls.Add(this.label9);
-            this.groupBoxStationInformation.Location = new System.Drawing.Point(252, 13);
-            this.groupBoxStationInformation.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxStationInformation.Location = new System.Drawing.Point(504, 25);
+            this.groupBoxStationInformation.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxStationInformation.Name = "groupBoxStationInformation";
-            this.groupBoxStationInformation.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxStationInformation.Size = new System.Drawing.Size(629, 460);
+            this.groupBoxStationInformation.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxStationInformation.Size = new System.Drawing.Size(973, 676);
             this.groupBoxStationInformation.TabIndex = 9;
             this.groupBoxStationInformation.TabStop = false;
             this.groupBoxStationInformation.Text = "Stationsinformationen";
+            // 
+            // tbDistance
+            // 
+            this.tbDistance.Location = new System.Drawing.Point(282, 77);
+            this.tbDistance.Margin = new System.Windows.Forms.Padding(4);
+            this.tbDistance.Name = "tbDistance";
+            this.tbDistance.ReadOnly = true;
+            this.tbDistance.Size = new System.Drawing.Size(532, 31);
+            this.tbDistance.TabIndex = 8;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 80);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(84, 25);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "Distanz";
             // 
             // wbStations
             // 
             this.wbStations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.wbStations.Location = new System.Drawing.Point(11, 44);
-            this.wbStations.Margin = new System.Windows.Forms.Padding(2);
-            this.wbStations.MinimumSize = new System.Drawing.Size(10, 10);
+            this.wbStations.Location = new System.Drawing.Point(22, 128);
+            this.wbStations.Margin = new System.Windows.Forms.Padding(4);
+            this.wbStations.MinimumSize = new System.Drawing.Size(20, 19);
             this.wbStations.Name = "wbStations";
-            this.wbStations.Size = new System.Drawing.Size(610, 404);
+            this.wbStations.Size = new System.Drawing.Size(935, 525);
             this.wbStations.TabIndex = 6;
             // 
             // tbStationLatitude
             // 
-            this.tbStationLatitude.Location = new System.Drawing.Point(279, 20);
-            this.tbStationLatitude.Margin = new System.Windows.Forms.Padding(2);
+            this.tbStationLatitude.Location = new System.Drawing.Point(558, 38);
+            this.tbStationLatitude.Margin = new System.Windows.Forms.Padding(4);
             this.tbStationLatitude.Name = "tbStationLatitude";
             this.tbStationLatitude.ReadOnly = true;
-            this.tbStationLatitude.Size = new System.Drawing.Size(130, 20);
+            this.tbStationLatitude.Size = new System.Drawing.Size(256, 31);
             this.tbStationLatitude.TabIndex = 5;
             // 
             // tbStationLongitude
             // 
-            this.tbStationLongitude.Location = new System.Drawing.Point(141, 20);
-            this.tbStationLongitude.Margin = new System.Windows.Forms.Padding(2);
+            this.tbStationLongitude.Location = new System.Drawing.Point(282, 38);
+            this.tbStationLongitude.Margin = new System.Windows.Forms.Padding(4);
             this.tbStationLongitude.Name = "tbStationLongitude";
             this.tbStationLongitude.ReadOnly = true;
-            this.tbStationLongitude.Size = new System.Drawing.Size(130, 20);
+            this.tbStationLongitude.Size = new System.Drawing.Size(256, 31);
             this.tbStationLongitude.TabIndex = 4;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 21);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(16, 40);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(129, 13);
+            this.label9.Size = new System.Drawing.Size(256, 25);
             this.label9.TabIndex = 0;
             this.label9.Text = "Längengrad / Breitengrad";
             // 
@@ -672,11 +708,11 @@ namespace SwissTransport.UI.Forms
             this.lvStations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader12});
             this.lvStations.FullRowSelect = true;
-            this.lvStations.Location = new System.Drawing.Point(14, 61);
-            this.lvStations.Margin = new System.Windows.Forms.Padding(2);
+            this.lvStations.Location = new System.Drawing.Point(28, 117);
+            this.lvStations.Margin = new System.Windows.Forms.Padding(4);
             this.lvStations.MultiSelect = false;
             this.lvStations.Name = "lvStations";
-            this.lvStations.Size = new System.Drawing.Size(231, 414);
+            this.lvStations.Size = new System.Drawing.Size(458, 583);
             this.lvStations.TabIndex = 3;
             this.lvStations.UseCompatibleStateImageBehavior = false;
             this.lvStations.View = System.Windows.Forms.View.Details;
@@ -691,10 +727,10 @@ namespace SwissTransport.UI.Forms
             // btStationSearch
             // 
             this.btStationSearch.Enabled = false;
-            this.btStationSearch.Location = new System.Drawing.Point(170, 34);
-            this.btStationSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.btStationSearch.Location = new System.Drawing.Point(340, 65);
+            this.btStationSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btStationSearch.Name = "btStationSearch";
-            this.btStationSearch.Size = new System.Drawing.Size(72, 23);
+            this.btStationSearch.Size = new System.Drawing.Size(144, 44);
             this.btStationSearch.TabIndex = 2;
             this.btStationSearch.Text = "Suchen";
             this.btStationSearch.UseVisualStyleBackColor = true;
@@ -703,21 +739,21 @@ namespace SwissTransport.UI.Forms
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 14);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(22, 27);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.Size = new System.Drawing.Size(79, 25);
             this.label8.TabIndex = 4;
             this.label8.Text = "Station";
             // 
             // progressBar
             // 
             this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar.Location = new System.Drawing.Point(763, 32);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(2);
+            this.progressBar.Location = new System.Drawing.Point(1241, 62);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.MarqueeAnimationSpeed = 90;
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(127, 23);
+            this.progressBar.Size = new System.Drawing.Size(254, 44);
             this.progressBar.TabIndex = 3;
             // 
             // menuStrip1
@@ -728,7 +764,8 @@ namespace SwissTransport.UI.Forms
             this.btSettingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(901, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(12, 4, 0, 4);
+            this.menuStrip1.Size = new System.Drawing.Size(1517, 44);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -738,14 +775,14 @@ namespace SwissTransport.UI.Forms
             this.mailExportToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(83, 36);
             this.fileToolStripMenuItem.Text = "Datei";
             // 
             // mailExportToolStripMenuItem
             // 
             this.mailExportToolStripMenuItem.Image = global::SwissTransport.UI.Properties.Resources.MailIcon;
             this.mailExportToolStripMenuItem.Name = "mailExportToolStripMenuItem";
-            this.mailExportToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.mailExportToolStripMenuItem.Size = new System.Drawing.Size(252, 38);
             this.mailExportToolStripMenuItem.Text = "Mail-Export...";
             this.mailExportToolStripMenuItem.Click += new System.EventHandler(this.ExportToolStripMenuItem_Click);
             // 
@@ -753,7 +790,7 @@ namespace SwissTransport.UI.Forms
             // 
             this.exportToolStripMenuItem.Image = global::SwissTransport.UI.Properties.Resources.CloseIcon;
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(252, 38);
             this.exportToolStripMenuItem.Text = "Schliessen";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.CloseApplication_Click);
             // 
@@ -762,14 +799,14 @@ namespace SwissTransport.UI.Forms
             this.btSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sMTPToolStripMenuItem});
             this.btSettingsToolStripMenuItem.Name = "btSettingsToolStripMenuItem";
-            this.btSettingsToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.btSettingsToolStripMenuItem.Size = new System.Drawing.Size(171, 36);
             this.btSettingsToolStripMenuItem.Text = "Einstellungen";
             // 
             // sMTPToolStripMenuItem
             // 
             this.sMTPToolStripMenuItem.Image = global::SwissTransport.UI.Properties.Resources.SettingsIcon;
             this.sMTPToolStripMenuItem.Name = "sMTPToolStripMenuItem";
-            this.sMTPToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.sMTPToolStripMenuItem.Size = new System.Drawing.Size(175, 38);
             this.sMTPToolStripMenuItem.Text = "SMTP";
             this.sMTPToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
@@ -777,10 +814,10 @@ namespace SwissTransport.UI.Forms
             // 
             this.lbSelectedTab.AutoSize = true;
             this.lbSelectedTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSelectedTab.Location = new System.Drawing.Point(18, 31);
-            this.lbSelectedTab.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbSelectedTab.Location = new System.Drawing.Point(36, 60);
+            this.lbSelectedTab.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbSelectedTab.Name = "lbSelectedTab";
-            this.lbSelectedTab.Size = new System.Drawing.Size(132, 24);
+            this.lbSelectedTab.Size = new System.Drawing.Size(256, 44);
             this.lbSelectedTab.TabIndex = 4;
             this.lbSelectedTab.Text = "Verbindungen";
             // 
@@ -791,17 +828,16 @@ namespace SwissTransport.UI.Forms
             // 
             // SwissTransportMainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 577);
+            this.ClientSize = new System.Drawing.Size(1517, 901);
             this.Controls.Add(this.lbSelectedTab);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.progressBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(709, 600);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SwissTransportMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Swiss Transport - by Thomas Gassmann";
@@ -834,9 +870,6 @@ namespace SwissTransport.UI.Forms
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ListView lvConnections;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.CheckBox cbShowExtendedOptions;
         private System.Windows.Forms.GroupBox gbExtendedOptions;
         private System.Windows.Forms.ComboBox cbArrival;
@@ -877,10 +910,6 @@ namespace SwissTransport.UI.Forms
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.Label lbSelectedTab;
         private System.Windows.Forms.CheckBox cbAutoRefreshStationBoard;
         private System.Windows.Forms.Timer timerStationBoard;
@@ -893,6 +922,16 @@ namespace SwissTransport.UI.Forms
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ToolStripMenuItem btSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sMTPToolStripMenuItem;
+        private System.Windows.Forms.ListView lvConnections;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.TextBox tbDistance;
+        private System.Windows.Forms.Label label10;
     }
 }
 

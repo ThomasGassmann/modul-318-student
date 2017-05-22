@@ -4,6 +4,8 @@
     using SwissTransport.UI.Mappers.Interfaces;
     using SwissTransport.UI.Properties;
     using System.Windows.Forms;
+    using System.Device.Location;
+    using System;
 
     /// <summary>
     /// Maps transport connections to list view items.
@@ -31,6 +33,15 @@
             listViewItem.SubItems.Add(string.IsNullOrEmpty(connection.To.Platform)
                 ? Resources.Empty
                 : connection.To.Platform);
+            var firstStationGeoLocation = new GeoCoordinate(
+                connection.From.Station.Coordinate.XCoordinate,
+                connection.From.Station.Coordinate.YCoordinate);
+            var secondStationGeoLocation = new GeoCoordinate(
+                connection.To.Station.Coordinate.XCoordinate,
+                connection.To.Station.Coordinate.YCoordinate);
+            var distance = secondStationGeoLocation.GetDistanceTo(firstStationGeoLocation);
+            var distanceString = $"{Math.Round(distance / 1000, 0)} km";
+            listViewItem.SubItems.Add(distanceString);
             return listViewItem;
         }
     }
