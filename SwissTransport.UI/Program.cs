@@ -2,6 +2,7 @@
 {
     using SwissTransport.UI.Forms;
     using System;
+    using System.Diagnostics;
     using System.Windows.Forms;
 
     /// <summary>
@@ -15,6 +16,7 @@
         [STAThread]
         public static void Main()
         {
+            SetFeatureBrowserEmulation.SetIEKeyforWebBrowserControl(Process.GetCurrentProcess());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SwissTransportMainForm());
