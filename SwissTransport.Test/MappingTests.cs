@@ -33,9 +33,9 @@
         public void CheckTypeMappingIsWorking()
         {
             // Arrange
-            var connection = this.queryService
+            var connection = UnitTestActionHandler.ExecuteUnitTestFunction(() => this.queryService
                 .GetConnections("Luzern", "Dagmersellen")
-                .ConnectionList.First();
+                .ConnectionList.First());
 
             // Act
             var mappedType = connection.Map<TransportConnection, ListViewItem>();

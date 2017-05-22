@@ -33,11 +33,11 @@
         public void CheckConnectionBetweenSurseeAndLucerne()
         {
             // Arrange, Act
-            var connections = this.queryService.GetConnections(
+            var connections = UnitTestActionHandler.ExecuteUnitTestFunction(() => this.queryService.GetConnections(
                 "Sursee", 
                 "Luzern",
                 new DateTime(2017, 5, 22),
-                isArrivalTime: false);
+                isArrivalTime: false));
             var connection = connections.ConnectionList.First();
 
             // Assert
@@ -53,17 +53,17 @@
         public void CheckConnectionWithArrivalAndDepartureTime()
         {
             // Arrange, Act
-            var arrivalTimeConnections = this.queryService.GetConnections(
+            var arrivalTimeConnections = UnitTestActionHandler.ExecuteUnitTestFunction(() => this.queryService.GetConnections(
                 "Sursee",
                 "Luzern",
                 new DateTime(2017, 5, 22),
-                isArrivalTime: true);
+                isArrivalTime: true));
 
-            var departureTimeConnections = this.queryService.GetConnections(
+            var departureTimeConnections = UnitTestActionHandler.ExecuteUnitTestFunction(() => this.queryService.GetConnections(
                 "Sursee",
                 "Luzern",
                 new DateTime(2017, 5, 22),
-                isArrivalTime: false);
+                isArrivalTime: false));
 
             // Assert
             Assert.IsNotNull(arrivalTimeConnections);

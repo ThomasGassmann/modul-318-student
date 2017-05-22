@@ -11,7 +11,6 @@
     using System.IO;
     using System.Linq;
     using System.Net;
-    using System.Threading;
 
     /// <inheritdoc />
     public class TransportationQueryService : IQueryService
@@ -40,7 +39,7 @@
             var arrivalTimeValue = isArrivalTime ? "1" : "0";
             var request = TransportationQueryService.CreateWebRequest(
                 $"http://transport.opendata.ch/v1/connections?from={fromStation}&to={toStation}&date={date}&time={dateTime}&isArrivalTime={arrivalTimeValue}");
-            var response = this.GetResponse(request);
+            var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
             if (responseStream != null)
@@ -68,7 +67,7 @@
             var parameterString = string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"));
             var request = TransportationQueryService.CreateWebRequest(
                 $"http://transport.opendata.ch/v1/locations?{parameterString}");
-            var response = this.GetResponse(request);
+            var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
             if (responseStream != null)
             {
@@ -107,7 +106,7 @@
             var query =
                 $"http://transport.opendata.ch/v1/stationboard?{paramName}={paramValue}&datetime={formattedDateTime}";
             var request = TransportationQueryService.CreateWebRequest(query);
-            var response = this.GetResponse(request);
+            var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
             if (responseStream != null)
@@ -135,40 +134,6 @@
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Gets the response for the given web request.
-        /// </summary>
-        /// <param name="webRequest">The web request to execute.</param>
-        /// <returns>The web response.</returns>
-        private WebResponse GetResponse(WebRequest webRequest)
-        {
-            var repeat = false;
-            do
-            {
-
-                try
-                {
-                    var response = webRequest.GetResponse();
-                    return response;
-                }
-                catch (WebException ex)
-                {
-                    repeat = false;
-                    if (ex.Status == WebExceptionStatus.ProtocolError)
-                    {
-                        var response = ex.Response as HttpWebResponse;
-                        if ((int)response.StatusCode == 429)
-                        {
-                            Thread.Sleep(500);
-                            repeat = true;
-                        }
-                    }
-                }
-            }
-            while (repeat);
-            throw new Exception("If you get here, something went terribly wrong and you should hope it's friday.");
         }
     }
 }

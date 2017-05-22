@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationBoardTests.cs" />
     <Compile Include="TransportStationTests.cs" />
+    <Compile Include="UnitTestActionHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SwissTransport.DataAccess\SwissTransport.DataAccess.csproj">

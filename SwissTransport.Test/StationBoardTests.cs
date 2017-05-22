@@ -33,8 +33,8 @@
         public void CheckStationBoardContainsValidEntries()
         {
             // Arrange, Act
-            var stationBoard = this.stationBoardQueryService
-                .GetStationBoard("8572991", new DateTime(2017, 5, 22));
+            var stationBoard = UnitTestActionHandler.ExecuteUnitTestFunction(() => this.stationBoardQueryService
+                .GetStationBoard("8572991", new DateTime(2017, 5, 22)));
 
             // Assert
             Assert.IsNotNull(stationBoard);

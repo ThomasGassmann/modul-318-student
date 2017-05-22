@@ -33,8 +33,8 @@
         public void CheckStationIsValid()
         {
             // Arrange, Act
-            var stations = this.transportQueryService
-                .GetStations("Uffikon, Kantonsstrasse");
+            var stations = UnitTestActionHandler.ExecuteUnitTestFunction(() =>this.transportQueryService
+                .GetStations("Uffikon, Kantonsstrasse"));
 
             // Assert
             Assert.AreEqual(stations.StationList.Count, 1);

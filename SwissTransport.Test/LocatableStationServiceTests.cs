@@ -1,11 +1,10 @@
-﻿namespace SwissTransport
+﻿namespace SwissTransport.Test
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using SwissTransport.DataAccess;
     using SwissTransport.DataAccess.Interfaces;
     using SwissTransport.Test.Mock;
     using System.Linq;
-    using System.Threading;
 
     /// <summary>
     /// Tests the locatable statino service.
@@ -36,7 +35,8 @@
         public void CheckStationsCloseAreValid()
         {
             // Arrange, Act
-            var closestStation = this.locatableStationService.GetClosestStation();
+            var closestStation = UnitTestActionHandler.ExecuteUnitTestFunction(() => 
+                this.locatableStationService.GetClosestStation());
 
             // Assert
             Assert.AreEqual(closestStation.Name, "Uffikon, Kantonsstrasse");
@@ -51,7 +51,8 @@
         public void CheckCloseStationsCount()
         {
             // Arrange, Act
-            var closestStations = this.locatableStationService.GetClosestStations();
+            var closestStations = UnitTestActionHandler.ExecuteUnitTestFunction(() => 
+                this.locatableStationService.GetClosestStations());
 
             // Assert
             Assert.AreEqual(closestStations.Count(), 10);
