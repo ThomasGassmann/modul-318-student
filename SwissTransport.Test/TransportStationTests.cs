@@ -33,7 +33,7 @@
         public void CheckStationIsValid()
         {
             // Arrange, Act
-            var stations = UnitTestActionHandler.ExecuteUnitTestFunction(() =>this.transportQueryService
+            var stations = UnitTestActionHandler.ExecuteUnitTestFunction(() => this.transportQueryService
                 .GetStations("Uffikon, Kantonsstrasse"));
 
             // Assert

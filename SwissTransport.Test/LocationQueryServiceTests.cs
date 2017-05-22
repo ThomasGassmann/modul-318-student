@@ -3,7 +3,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using SwissTransport.DataAccess;
     using SwissTransport.DataAccess.Interfaces;
-    using System.Threading;
 
     /// <summary>
     /// The main test class for the location.

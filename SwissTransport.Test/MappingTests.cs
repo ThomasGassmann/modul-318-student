@@ -7,9 +7,11 @@
     using SwissTransport.Model.Station;
     using System;
     using System.Linq;
-    using System.Threading;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Contains the tests to test the mapping.
+    /// </summary>
     [TestClass]
     public class MappingTests
     {

@@ -3,9 +3,9 @@
     using SwissTransport.Model.Connection;
     using SwissTransport.UI.Mappers.Interfaces;
     using SwissTransport.UI.Properties;
-    using System.Windows.Forms;
-    using System.Device.Location;
     using System;
+    using System.Device.Location;
+    using System.Windows.Forms;
 
     /// <summary>
     /// Maps transport connections to list view items.

@@ -10,23 +10,24 @@
     public class LocationQueryService : ILocationQueryService
     {
         /// <summary>
+        /// Contains the <see cref="GeoCoordinateWatcher"/>.
+        /// </summary>
+        private static readonly GeoCoordinateWatcher Watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+
+        /// <summary>
         /// Contains the cached location.
         /// </summary>
         private static SwissTransportGeoLocation cachedLocation;
 
         /// <summary>
-        /// Contains the <see cref="GeoCoordinateWatcher"/>.
-        /// </summary>
-        private static readonly GeoCoordinateWatcher watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
-
-        /// <summary>
+        /// Initializes static members of the <see cref="LocationQueryService"/> class.
         /// Executes, when the first instance of this class is created.
         /// </summary>
         static LocationQueryService()
         {
-            LocationQueryService.watcher.StatusChanged += LocationQueryService.Watcher_StatusChanged;
-            LocationQueryService.watcher.PositionChanged += LocationQueryService.Watcher_PositionChanged;
-            LocationQueryService.watcher.Start();
+            LocationQueryService.Watcher.StatusChanged += LocationQueryService.Watcher_StatusChanged;
+            LocationQueryService.Watcher.PositionChanged += LocationQueryService.Watcher_PositionChanged;
+            LocationQueryService.Watcher.Start();
         }
 
         /// <inheritdoc />
@@ -51,7 +52,7 @@
         /// <param name="e">The event arguments.</param>
         private static void Watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            if (!LocationQueryService.watcher.Position.Location.IsUnknown)
+            if (!LocationQueryService.Watcher.Position.Location.IsUnknown)
             {
                 LocationQueryService.SetLocation();
             }
@@ -64,7 +65,7 @@
         /// <param name="e">The event arguments.</param>
         private static void Watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
         {
-            if (e.Status == GeoPositionStatus.Ready && !LocationQueryService.watcher.Position.Location.IsUnknown)
+            if (e.Status == GeoPositionStatus.Ready && !LocationQueryService.Watcher.Position.Location.IsUnknown)
             {
                 LocationQueryService.SetLocation();
             }
@@ -77,8 +78,8 @@
         {
             LocationQueryService.cachedLocation = new SwissTransportGeoLocation
             {
-                Latitude = LocationQueryService.watcher.Position.Location.Latitude,
-                Longitude = LocationQueryService.watcher.Position.Location.Longitude,
+                Latitude = LocationQueryService.Watcher.Position.Location.Latitude,
+                Longitude = LocationQueryService.Watcher.Position.Location.Longitude,
                 Status = "success"
             };
         }

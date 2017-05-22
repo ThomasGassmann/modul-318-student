@@ -106,8 +106,8 @@
                     string.Empty,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            // Execute the action on the UI form, if possible.
-            (this.uiForm == null
+            //// Execute the action on the UI form, if possible.
+            (this.uiForm != null
                 ? x => this.uiForm.Invoke(x)
                 : new Action<Action>(x => x()))(messageBoxInvocation);
         }

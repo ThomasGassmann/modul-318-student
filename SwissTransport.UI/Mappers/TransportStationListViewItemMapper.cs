@@ -17,7 +17,7 @@
         /// <summary>
         /// Contains the location query service.
         /// </summary>
-        private static readonly ILocationQueryService locationQueryService = new LocationQueryService();
+        private static readonly ILocationQueryService LocationQueryService = new LocationQueryService();
 
         /// <summary>
         /// Contains the current location.
@@ -25,11 +25,12 @@
         private static GeoCoordinate currentLocation;
 
         /// <summary>
+        /// Initializes static members of the <see cref="TransportStationListViewItemMapper"/> class.
         /// Runs at the first initialization of the current class.
         /// </summary>
         static TransportStationListViewItemMapper()
         {
-            var location = TransportStationListViewItemMapper.locationQueryService.GetCurrentLocation();
+            var location = TransportStationListViewItemMapper.LocationQueryService.GetCurrentLocation();
             TransportStationListViewItemMapper.currentLocation = 
                 new GeoCoordinate(location.Latitude, location.Longitude);
         }
@@ -54,6 +55,7 @@
                     TransportStationListViewItemMapper.currentLocation);
                 listViewItem.SubItems.Add($"{Math.Round(distance / 1000, 0)} km");
             }
+
             return listViewItem;
         }
     }
