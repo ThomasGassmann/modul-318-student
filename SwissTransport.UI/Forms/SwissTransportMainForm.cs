@@ -400,7 +400,8 @@
         /// <param name="e">The event arguments.</param>
         private async void ShowStationsNear_Click(object sender, EventArgs e)
         {
-            using (new ProgressBarRunner(this.progressBar))
+            this.btShowStationsNear.Enabled = false;
+            using (new ProgressBarRunner(this.progressBar, () => this.btShowStationsNear.Enabled = true))
             {
                 // Load stations close to the user
                 var stationsClose = await Task.Run(() => this.actionHandler.HandleFunc(

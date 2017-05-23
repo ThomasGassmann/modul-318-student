@@ -75,7 +75,7 @@ namespace SwissTransport.UI.Forms
             this.cbSearchStationBoard = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.cbShowStationsNear = new System.Windows.Forms.Button();
+            this.btShowStationsNear = new System.Windows.Forms.Button();
             this.tbSearchStation = new System.Windows.Forms.TextBox();
             this.groupBoxStationInformation = new System.Windows.Forms.GroupBox();
             this.tbDistance = new System.Windows.Forms.TextBox();
@@ -586,7 +586,7 @@ namespace SwissTransport.UI.Forms
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.cbShowStationsNear);
+            this.tabPage3.Controls.Add(this.btShowStationsNear);
             this.tabPage3.Controls.Add(this.tbSearchStation);
             this.tabPage3.Controls.Add(this.groupBoxStationInformation);
             this.tabPage3.Controls.Add(this.lvStations);
@@ -603,14 +603,14 @@ namespace SwissTransport.UI.Forms
             // 
             // cbShowStationsNear
             // 
-            this.cbShowStationsNear.Location = new System.Drawing.Point(128, 65);
-            this.cbShowStationsNear.Margin = new System.Windows.Forms.Padding(6);
-            this.cbShowStationsNear.Name = "cbShowStationsNear";
-            this.cbShowStationsNear.Size = new System.Drawing.Size(202, 44);
-            this.cbShowStationsNear.TabIndex = 1;
-            this.cbShowStationsNear.Text = "In der Nähe";
-            this.cbShowStationsNear.UseVisualStyleBackColor = true;
-            this.cbShowStationsNear.Click += new System.EventHandler(this.ShowStationsNear_Click);
+            this.btShowStationsNear.Location = new System.Drawing.Point(128, 65);
+            this.btShowStationsNear.Margin = new System.Windows.Forms.Padding(6);
+            this.btShowStationsNear.Name = "cbShowStationsNear";
+            this.btShowStationsNear.Size = new System.Drawing.Size(202, 44);
+            this.btShowStationsNear.TabIndex = 1;
+            this.btShowStationsNear.Text = "In der Nähe";
+            this.btShowStationsNear.UseVisualStyleBackColor = true;
+            this.btShowStationsNear.Click += new System.EventHandler(this.ShowStationsNear_Click);
             // 
             // tbSearchStation
             // 
@@ -916,7 +916,7 @@ namespace SwissTransport.UI.Forms
         private System.Windows.Forms.Button btSelectDepartureStation;
         private System.Windows.Forms.Button btSelectArrivalStation;
         private System.Windows.Forms.Button btSelectStationBoardStation;
-        private System.Windows.Forms.Button cbShowStationsNear;
+        private System.Windows.Forms.Button btShowStationsNear;
         private System.Windows.Forms.ToolStripMenuItem mailExportToolStripMenuItem;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
