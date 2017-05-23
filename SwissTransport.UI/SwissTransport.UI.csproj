@@ -27,8 +27,8 @@
     <ProductName>SwissTransport</ProductName>
     <PublisherName>Thomas Gassmann</PublisherName>
     <SuiteName>Thomas Gassmann</SuiteName>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.4.0.%2a</ApplicationVersion>
+    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationVersion>1.5.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
