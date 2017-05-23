@@ -71,7 +71,7 @@
             switch (ex)
             {
                 case WebException webException:
-                    errorMessage = "Eine ungültige Antwort wurde von der API zurück gesendet.";
+                    errorMessage = "Eine ungültige Antwort wurde von der API zurück gesendet. Bitte überprüfen Sie ihre Angaben.";
                     if (webException.Response is HttpWebResponse response && 
                         webException.Status == WebExceptionStatus.ProtocolError)
                     {
