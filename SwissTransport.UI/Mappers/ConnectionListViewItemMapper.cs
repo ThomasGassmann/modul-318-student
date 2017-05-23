@@ -34,11 +34,11 @@
                 ? Resources.Empty
                 : connection.To.Platform);
             var firstStationGeoLocation = new GeoCoordinate(
-                connection.From.Station.Coordinate.XCoordinate,
-                connection.From.Station.Coordinate.YCoordinate);
+                connection.From.Station.Coordinate.YCoordinate,
+                connection.From.Station.Coordinate.XCoordinate);
             var secondStationGeoLocation = new GeoCoordinate(
-                connection.To.Station.Coordinate.XCoordinate,
-                connection.To.Station.Coordinate.YCoordinate);
+                connection.To.Station.Coordinate.YCoordinate,
+                connection.To.Station.Coordinate.XCoordinate);
             var distance = secondStationGeoLocation.GetDistanceTo(firstStationGeoLocation);
             var distanceString = $"{Math.Round(distance / 1000, 0)} km";
             listViewItem.SubItems.Add(distanceString);

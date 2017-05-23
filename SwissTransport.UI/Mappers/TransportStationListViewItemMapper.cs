@@ -32,7 +32,7 @@
         {
             var location = TransportStationListViewItemMapper.LocationQueryService.GetCurrentLocation();
             TransportStationListViewItemMapper.currentLocation = 
-                new GeoCoordinate(location.Latitude, location.Longitude);
+                new GeoCoordinate(location.Longitude, location.Latitude);
         }
 
         /// <inheritdoc />

@@ -250,8 +250,8 @@
                 this.tbStationLatitude.Text = stationTag.Coordinate.XCoordinate.ToString();
                 var currentLocation = this.locationQueryService.GetCurrentLocation();
                 var currentGeoLocation = new GeoCoordinate(
-                    currentLocation.Latitude,
-                    currentLocation.Longitude);
+                    currentLocation.Longitude,
+                    currentLocation.Latitude);
                 var stationGeoLocation = new GeoCoordinate(
                     stationTag.Coordinate.YCoordinate,
                     stationTag.Coordinate.XCoordinate);
