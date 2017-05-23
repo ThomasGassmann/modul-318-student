@@ -257,7 +257,7 @@
                     stationTag.Coordinate.XCoordinate);
                 var distance = Math.Round(currentGeoLocation.GetDistanceTo(stationGeoLocation) / 1000, 0);
                 this.tbDistance.Text = $"{distance} km";
-                var gmapsUrl = $"https://www.google.ch/maps/@{this.tbStationLatitude.Text},{this.tbStationLongitude.Text},19z";
+                var gmapsUrl = $"http://bing.com/maps/default.aspx?cp={this.tbStationLatitude.Text}~{this.tbStationLongitude.Text}&lvl=20";
                 this.wbStations.Navigate(gmapsUrl);
             }
         }

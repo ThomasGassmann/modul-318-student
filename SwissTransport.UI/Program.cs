@@ -2,7 +2,6 @@
 {
     using SwissTransport.UI.Forms;
     using System;
-    using System.Diagnostics;
     using System.Windows.Forms;
 
     /// <summary>
@@ -16,7 +15,7 @@
         [STAThread]
         public static void Main()
         {
-            SetFeatureBrowserEmulation.SetIEKeyforWebBrowserControl(Process.GetCurrentProcess());
+            //SetFeatureBrowserEmulation.SetIEKeyforWebBrowserControl(Process.GetCurrentProcess());
             AppDomain.CurrentDomain.UnhandledException += (sender, args) => MessageBox.Show("Ein unerwarteter Fehler ist aufgetreten.");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
