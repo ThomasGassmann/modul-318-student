@@ -42,9 +42,10 @@
             {
                 Tag = source
             };
+            
             var location = new GeoCoordinate(
-                source.Coordinate.XCoordinate,
-                source.Coordinate.YCoordinate);
+                source.Coordinate.YCoordinate,
+                source.Coordinate.XCoordinate);
             if (TransportStationListViewItemMapper.currentLocation.IsUnknown)
             {
                 listViewItem.SubItems.Add("Unbekannt");
