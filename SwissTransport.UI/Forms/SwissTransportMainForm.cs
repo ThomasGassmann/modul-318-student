@@ -178,6 +178,13 @@
                     return;
                 }
 
+                if (stationResult.StationList.Count == 1 && 
+                    stationResult.StationList.Single().Name == "Pjöngjang")
+                {
+                    MessageBox.Show("You're not allowed to go there. Please consider going to South Korea.");
+                    return;
+                }
+
                 //// Get the view models and load them into the list view
                 var stations = this.actionHandler.HandleFunc(
                     () => stationResult.StationList.MapCollection<TransportStation, ListViewItem>().ToArray(),
