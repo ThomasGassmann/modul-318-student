@@ -1,0 +1,708 @@
+<Project>
+  <Name>SwissTransport</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>SwissTransport.DataAccess.dll</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Interface">
+        <Name>ILocatableStationService</Name>
+        <Access>Public</Access>
+        <Location left="222" top="212" />
+        <Size width="341" height="110" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">IEnumerable&lt;TransportStation&gt; GetClosestStations()</Member>
+        <Member type="Method">TransportStation GetClosestStation()</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IQueryService</Name>
+        <Access>Public</Access>
+        <Location left="178" top="676" />
+        <Size width="613" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">StationCollection GetStations(String query)</Member>
+        <Member type="Method">StationCollection GetStationsNear(Double x, Double y)</Member>
+        <Member type="Method">StationBoardRoot GetStationBoard(String id, DateTime dateTime)</Member>
+        <Member type="Method">StationBoardRoot GetStationBoardByName(String name, DateTime dateTime)</Member>
+        <Member type="Method">ConnectionCollection GetConnections(String fromStation, String toStation)</Member>
+        <Member type="Method">ConnectionCollection GetConnections(String fromStation, String toStation, DateTime time, Boolean isArrivalTime)</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ILocationQueryService</Name>
+        <Access>Public</Access>
+        <Location left="1047" top="342" />
+        <Size width="331" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">SwissTransportGeoLocation GetCurrentLocation()</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>LocatableStationService</Name>
+        <Access>Public</Access>
+        <Location left="222" top="395" />
+        <Size width="555" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly ILocationQueryService locationQueryService</Member>
+        <Member type="Field">private readonly IQueryService dataQueryService</Member>
+        <Member type="Constructor">public LocatableStationService(ILocationQueryService locationQueryService, IQueryService dataQueryService)</Member>
+        <Member type="Method">public IEnumerable&lt;TransportStation&gt; GetClosestStations()</Member>
+        <Member type="Method">public TransportStation GetClosestStation()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LocationQueryService</Name>
+        <Access>Public</Access>
+        <Location left="632" top="80" />
+        <Size width="544" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private GeoCoordinateWatcher Watcher</Member>
+        <Member type="Field">private static SwissTransportGeoLocation cachedLocation</Member>
+        <Member type="Constructor">static LocationQueryService()</Member>
+        <Member type="Constructor">public LocationQueryService()</Member>
+        <Member type="Method">public SwissTransportGeoLocation GetCurrentLocation()</Member>
+        <Member type="Method">private static Void Watcher_PositionChanged(Object sender, GeoPositionChangedEventArgs&lt;GeoCoordinate&gt; e)</Member>
+        <Member type="Method">private static Void Watcher_StatusChanged(Object sender, GeoPositionStatusChangedEventArgs e)</Member>
+        <Member type="Method">private static Void SetLocation()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TransportationQueryService</Name>
+        <Access>Public</Access>
+        <Location left="814" top="619" />
+        <Size width="620" height="271" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public TransportationQueryService()</Member>
+        <Member type="Method">public StationCollection GetStations(String query)</Member>
+        <Member type="Method">public StationCollection GetStationsNear(Double x, Double y)</Member>
+        <Member type="Method">public StationBoardRoot GetStationBoard(String id, DateTime dateTime)</Member>
+        <Member type="Method">public StationBoardRoot GetStationBoardByName(String name, DateTime dateTime)</Member>
+        <Member type="Method">public ConnectionCollection GetConnections(String fromStation, String toStation, DateTime time, Boolean isArrivalTime)</Member>
+        <Member type="Method">public ConnectionCollection GetConnections(String fromStation, String toStation)</Member>
+        <Member type="Method">public StationCollection GetStations(params KeyValuePair&lt;String, String&gt;[] parameters)</Member>
+        <Member type="Method">private static WebRequest CreateWebRequest(String url)</Member>
+        <Member type="Method">private StationBoardRoot GetStationBoard(String paramName, String paramValue, DateTime dateTime)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Realization" first="3" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="4" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="5" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="3" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>locationQueryService</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="3" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>dataQueryService</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>SwissTransport.Model.dll</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>TransportStationBoard</Name>
+        <Access>Public</Access>
+        <Location left="1101" top="356" />
+        <Size width="217" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public String Name { get; set; }</Member>
+        <Member type="Property">public String Category { get; set; }</Member>
+        <Member type="Property">public String Number { get; set; }</Member>
+        <Member type="Property">public String To { get; set; }</Member>
+        <Member type="Property">public String Operator { get; set; }</Member>
+        <Member type="Property">public Stop Stop { get; set; }</Member>
+        <Member type="Constructor">public TransportStationBoard()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>StationBoardRoot</Name>
+        <Access>Public</Access>
+        <Location left="712" top="230" />
+        <Size width="320" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public TransportStation Station { get; set; }</Member>
+        <Member type="Property">public List&lt;TransportStationBoard&gt; Entries { get; set; }</Member>
+        <Member type="Constructor">public StationBoardRoot()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TransportStation</Name>
+        <Access>Public</Access>
+        <Location left="619" top="628" />
+        <Size width="293" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public String Id { get; set; }</Member>
+        <Member type="Property">public String Name { get; set; }</Member>
+        <Member type="Property">public Int32? Score { get; set; }</Member>
+        <Member type="Property">public Coordinate Coordinate { get; set; }</Member>
+        <Member type="Property">public Double? Distance { get; set; }</Member>
+        <Member type="Constructor">public TransportStation()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>StationCollection</Name>
+        <Access>Public</Access>
+        <Location left="974" top="607" />
+        <Size width="290" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public List&lt;TransportStation&gt; StationList { get; set; }</Member>
+        <Member type="Constructor">public StationCollection()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SwissTransportGeoLocation</Name>
+        <Access>Public</Access>
+        <Location left="421" top="217" />
+        <Size width="241" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public String Status { get; set; }</Member>
+        <Member type="Property">public Double Latitude { get; set; }</Member>
+        <Member type="Property">public Double Longitude { get; set; }</Member>
+        <Member type="Property">public Boolean Success { get; }</Member>
+        <Member type="Constructor">public SwissTransportGeoLocation()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Coordinate</Name>
+        <Access>Public</Access>
+        <Location left="349" top="628" />
+        <Size width="242" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public String Type { get; set; }</Member>
+        <Member type="Property">public Double XCoordinate { get; set; }</Member>
+        <Member type="Property">public Double YCoordinate { get; set; }</Member>
+        <Member type="Constructor">public Coordinate()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Stop</Name>
+        <Access>Public</Access>
+        <Location left="1055" top="188" />
+        <Size width="232" height="117" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public DateTime Departure { get; set; }</Member>
+        <Member type="Constructor">public Stop()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TransportConnection</Name>
+        <Access>Public</Access>
+        <Location left="1366" top="63" />
+        <Size width="234" height="187" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public ConnectionPoint From { get; set; }</Member>
+        <Member type="Property">public ConnectionPoint To { get; set; }</Member>
+        <Member type="Property">public String Duration { get; set; }</Member>
+        <Member type="Constructor">public TransportConnection()</Member>
+        <Member type="Method">public TimeSpan GetDuration()</Member>
+        <Member type="Method">public String GetDurationString()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ConnectionPoint</Name>
+        <Access>Public</Access>
+        <Location left="105" top="106" />
+        <Size width="290" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public TransportStation Station { get; set; }</Member>
+        <Member type="Property">public String Arrival { get; set; }</Member>
+        <Member type="Property">public String ArrivalTimestamp { get; set; }</Member>
+        <Member type="Property">public String Departure { get; set; }</Member>
+        <Member type="Property">public String DepartureTimestamp { get; set; }</Member>
+        <Member type="Property">public Int32? Delay { get; set; }</Member>
+        <Member type="Property">public String Platform { get; set; }</Member>
+        <Member type="Property">public String RealtimeAvailability { get; set; }</Member>
+        <Member type="Property">public DateTime DepartureDateTime { get; }</Member>
+        <Member type="Property">public DateTime ArrivalDateTime { get; }</Member>
+        <Member type="Constructor">public ConnectionPoint()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ConnectionCollection</Name>
+        <Access>Public</Access>
+        <Location left="1353" top="317" />
+        <Size width="350" height="126" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public List&lt;TransportConnection&gt; ConnectionList { get; set; }</Member>
+        <Member type="Constructor">public ConnectionCollection()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="9" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="7" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="8" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>SwissTransport.Test.dll</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>LocatableStationServiceTests</Name>
+        <Access>Public</Access>
+        <Location left="935" top="233" />
+        <Size width="299" height="161" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly ILocatableStationService locatableStationService</Member>
+        <Member type="Constructor">public LocatableStationServiceTests()</Member>
+        <Member type="Method">public Void CheckStationsCloseAreValid()</Member>
+        <Member type="Method">public Void CheckCloseStationsCount()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LocationQueryServiceTests</Name>
+        <Access>Public</Access>
+        <Location left="266" top="277" />
+        <Size width="302" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly ILocationQueryService locationQueryService</Member>
+        <Member type="Constructor">public LocationQueryServiceTests()</Member>
+        <Member type="Method">public Void TestCurrentLocationIsReturned()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MappingTests</Name>
+        <Access>Public</Access>
+        <Location left="635" top="444" />
+        <Size width="250" height="160" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly IQueryService queryService</Member>
+        <Member type="Constructor">public MappingTests()</Member>
+        <Member type="Method">public Void CheckTypeMappingIsWorking()</Member>
+        <Member type="Method">public Void CheckInvalidMap()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ConnectionTests</Name>
+        <Access>Public</Access>
+        <Location left="252" top="444" />
+        <Size width="343" height="163" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly IQueryService queryService</Member>
+        <Member type="Constructor">public ConnectionTests()</Member>
+        <Member type="Method">public Void CheckConnectionBetweenSurseeAndLucerne()</Member>
+        <Member type="Method">public Void CheckConnectionWithArrivalAndDepartureTime()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>StationBoardTests</Name>
+        <Access>Public</Access>
+        <Location left="910" top="444" />
+        <Size width="287" height="138" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly IQueryService stationBoardQueryService</Member>
+        <Member type="Constructor">public StationBoardTests()</Member>
+        <Member type="Method">public Void CheckStationBoardContainsValidEntries()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TransportStationTests</Name>
+        <Access>Public</Access>
+        <Location left="635" top="136" />
+        <Size width="250" height="136" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly IQueryService transportQueryService</Member>
+        <Member type="Constructor">public TransportStationTests()</Member>
+        <Member type="Method">public Void CheckStationIsValid()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UnitTestActionHandler</Name>
+        <Access>Public</Access>
+        <Location left="252" top="151" />
+        <Size width="322" height="100" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static T ExecuteUnitTestFunction(Func&lt;T&gt; function)</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FakeLocationProvider</Name>
+        <Access>Public</Access>
+        <Location left="603" top="300" />
+        <Size width="306" height="120" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public FakeLocationProvider()</Member>
+        <Member type="Method">public SwissTransportGeoLocation GetCurrentLocation()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>SwissTransport.UI.exe</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Interface">
+        <Name>IMapper&lt;TSource, TResult&gt;</Name>
+        <Access>Public</Access>
+        <Location left="1085" top="1416" />
+        <Size width="220" height="83" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">TResult Create(TSource source)</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IProgressBarRunner</Name>
+        <Access>Public</Access>
+        <Location left="998" top="323" />
+        <Size width="245" height="106" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">ProgressBar ProgressBar { get; }</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IActionHandler</Name>
+        <Access>Public</Access>
+        <Location left="204" top="949" />
+        <Size width="400" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">Void HandleAction(Action action, Action&lt;Exception&gt; exceptionHandler)</Member>
+        <Member type="Method">T HandleFunc(Func&lt;T&gt; func, Action&lt;Exception&gt; exceptionHandler)</Member>
+        <Member type="Method">Void HandleAction(Action action)</Member>
+        <Member type="Method">T HandleFunc(Func&lt;T&gt; func)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>ObjectExtensions</Name>
+        <Access>Public</Access>
+        <Location left="729" top="1559" />
+        <Size width="404" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static TResult Map(TSource source)</Member>
+        <Member type="Method">public static IEnumerable&lt;TResult&gt; MapCollection(IEnumerable&lt;TSource&gt; source)</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Program</Name>
+        <Access>Public</Access>
+        <Location left="1149" top="1525" />
+        <Size width="162" height="99" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static Void Main()</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ComboboxItemViewModel&lt;T&gt;</Name>
+        <Access>Public</Access>
+        <Location left="1271" top="303" />
+        <Size width="372" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly Func&lt;T, String&gt; getDisplayValue</Member>
+        <Member type="Property">public String DisplayText { get; }</Member>
+        <Member type="Property">public T Value { get; private set; }</Member>
+        <Member type="Constructor">public ComboboxItemViewModel(T value, Func&lt;T, String&gt; displayValue)</Member>
+        <Member type="Method">public override String ToString()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ComboboxValidater</Name>
+        <Access>Public</Access>
+        <Location left="998" top="526" />
+        <Size width="379" height="116" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static Boolean ContainValidLocations(params ComboBox[] comboBoxes)</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ConnectionListViewItemMapper</Name>
+        <Access>Public</Access>
+        <Location left="729" top="1416" />
+        <Size width="325" height="124" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public ConnectionListViewItemMapper()</Member>
+        <Member type="Method">public ListViewItem Create(TransportConnection connection)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>StationBoardListViewItemMapper</Name>
+        <Access>Public</Access>
+        <Location left="729" top="1270" />
+        <Size width="360" height="124" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public StationBoardListViewItemMapper()</Member>
+        <Member type="Method">public IEnumerable&lt;ListViewItem&gt; Create(StationBoardRoot source)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TransportStationComboboxItemMapper</Name>
+        <Access>Public</Access>
+        <Location left="1106" top="1270" />
+        <Size width="432" height="124" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public TransportStationComboboxItemMapper()</Member>
+        <Member type="Method">public ComboboxItemViewModel&lt;TransportStation&gt; Create(TransportStation source)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TransportStationListViewItemMapper</Name>
+        <Access>Public</Access>
+        <Location left="1330" top="1431" />
+        <Size width="291" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private ILocationQueryService LocationQueryService</Member>
+        <Member type="Field">private static GeoCoordinate currentLocation</Member>
+        <Member type="Constructor">static TransportStationListViewItemMapper()</Member>
+        <Member type="Constructor">public TransportStationListViewItemMapper()</Member>
+        <Member type="Method">public ListViewItem Create(TransportStation source)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SendMailForm</Name>
+        <Access>Public</Access>
+        <Location left="970" top="780" />
+        <Size width="767" height="328" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly IActionHandler actionHandler</Member>
+        <Member type="Field">private Boolean canClose</Member>
+        <Member type="Property">public IEnumerable&lt;TransportConnection&gt; TransportConnections { get; }</Member>
+        <Member type="Property">public String SmtpHost { get; private set; }</Member>
+        <Member type="Property">public Int32 SmtpPort { get; private set; }</Member>
+        <Member type="Property">public String UserName { get; private set; }</Member>
+        <Member type="Property">public String Password { get; private set; }</Member>
+        <Member type="Property">public String From { get; private set; }</Member>
+        <Member type="Constructor">public SendMailForm(IEnumerable&lt;TransportConnection&gt; connections, String smtpHost, Int32 smtpPort, String userName, String password, String from)</Member>
+        <Member type="Method">private Void Send_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SuggestMailBody()</Member>
+        <Member type="Method">private Void SendMailForm_FormClosing(Object sender, FormClosingEventArgs e)</Member>
+        <Member type="Method">private Void Cancel_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void InitializeComponent()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SettingsForm</Name>
+        <Access>Public</Access>
+        <Location left="34" top="30" />
+        <Size width="360" height="208" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public SettingsForm()</Member>
+        <Member type="Method">private Void Save_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SmtpHost_TextChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SmtpPort_ValueChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void UserName_TextChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void Password_TextChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void InitializeComponent()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>StationSelector</Name>
+        <Access>Public</Access>
+        <Location left="46" top="1293" />
+        <Size width="645" height="315" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly IActionHandler actionHandler</Member>
+        <Member type="Field">private readonly IQueryService queryService</Member>
+        <Member type="Field">private readonly ILocatableStationService locatableStationService</Member>
+        <Member type="Property">public TransportStation SelectedStation { get; private set; }</Member>
+        <Member type="Constructor">public StationSelector()</Member>
+        <Member type="Method">private Void StationsListView_ColumnWidthChanging(Object sender, ColumnWidthChangingEventArgs e)</Member>
+        <Member type="Method">private Void Stations_SelectedIndexChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void StationSelector_Load(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void CloseToMe_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Task LoadStationListView(String searchTerm)</Member>
+        <Member type="Method">private Task LoadStationListView(Func&lt;IEnumerable&lt;TransportStation&gt;&gt; stationFunc, Action&lt;Exception&gt; exceptionHanlder)</Member>
+        <Member type="Method">private Void Search_TextChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void Search_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void InitializeComponent()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SwissTransportMainForm</Name>
+        <Access>Public</Access>
+        <Location left="425" top="12" />
+        <Size width="525" height="849" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly IQueryService queryService</Member>
+        <Member type="Field">private readonly IActionHandler actionHandler</Member>
+        <Member type="Field">private readonly ILocationQueryService locationQueryService</Member>
+        <Member type="Field">private readonly ILocatableStationService locatableStationService</Member>
+        <Member type="Constructor">public SwissTransportMainForm()</Member>
+        <Member type="Method">private Void ShowExtendedOptions_CheckedChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void LoadStationCombobox(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SearchConnections_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void StationSearch_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void AutoRefreshStationBoard_CheckedChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SearchStationDialog(ComboBox comboBoxToLoadInto)</Member>
+        <Member type="Method">private Void Stations_SelectedIndexChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void TabControl_SelectedIndexChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Task&lt;ComboboxItemViewModel&lt;TransportStation&gt;&gt; GetCurrentLocationComboboxViewModel()</Member>
+        <Member type="Method">private Task LoadCurrentLocationIntoComboboxes(params ComboBox[] comboBoxesToApply)</Member>
+        <Member type="Method">private Task CheckIfComboboxStationEmpty(ComboBox combobox, Action continuation)</Member>
+        <Member type="Method">private Task LoadStationBoard()</Member>
+        <Member type="Method">private Void Stations_ColumnWidthChanging(Object sender, ColumnWidthChangingEventArgs e)</Member>
+        <Member type="Method">private Void ShowStationsNear_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void ExportToolStripMenuItem_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SettingsToolStripMenuItem_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SearchStation_KeyUp(Object sender, KeyEventArgs e)</Member>
+        <Member type="Method">private Void MoreStationBoardOptions_CheckedChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void ConnectionStationSelectionCombobox_Leave(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void StationBoardStationSelectionCombobox_Leave(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SearchStationBoard_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private DateTime ConstructDateTime(DateTimePicker datePicker, DateTimePicker timePicker)</Member>
+        <Member type="Method">private Void ConnectionButtonValidation(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void StationBoardDisplayButtonValidation(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Boolean IsValidStationBoardStation()</Member>
+        <Member type="Method">private Boolean AreValidConnectionStationsSelected()</Member>
+        <Member type="Method">private Void ValidateStationBoardDisplayButton()</Member>
+        <Member type="Method">private Void ValidateConnectionSearchButton()</Member>
+        <Member type="Method">private Void ValidateSearchStationButton()</Member>
+        <Member type="Method">private Void SearchStation_TextChanged(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SwissTransportMainForm_Load(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void TimerStationBoard_Tick(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SelectDepartureStation_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SelectArrivalStation_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void SelectStationBoardStation_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void CloseApplication_Click(Object sender, EventArgs e)</Member>
+        <Member type="Method">private Void InitializeComponent()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ProgressBarRunner</Name>
+        <Access>Public</Access>
+        <Location left="998" top="55" />
+        <Size width="461" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly Action disposeExecuteAction</Member>
+        <Member type="Property">public ProgressBar ProgressBar { get; }</Member>
+        <Member type="Constructor">public ProgressBarRunner(ProgressBar progressBarToHandle, Action disposeExecuteAction)</Member>
+        <Member type="Method">public Void Dispose()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ActionHandler</Name>
+        <Access>Public</Access>
+        <Location left="10" top="262" />
+        <Size width="402" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly Form uiForm</Member>
+        <Member type="Constructor">public ActionHandler(Form form)</Member>
+        <Member type="Method">public T HandleFunc(Func&lt;T&gt; func)</Member>
+        <Member type="Method">public Void HandleAction(Action action)</Member>
+        <Member type="Method">public T HandleFunc(Func&lt;T&gt; func, Action&lt;Exception&gt; exceptionHandler)</Member>
+        <Member type="Method">public Void HandleAction(Action action, Action&lt;Exception&gt; exceptionHandler)</Member>
+        <Member type="Method">private Void ShowDefaultExceptionWindow(Exception ex)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Realization" first="15" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="16" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="11" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>actionHandler</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="13" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>actionHandler</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="14" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>actionHandler</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
