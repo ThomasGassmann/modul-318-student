@@ -17,6 +17,7 @@
         public static void Main()
         {
             SetFeatureBrowserEmulation.SetIEKeyforWebBrowserControl(Process.GetCurrentProcess());
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) => MessageBox.Show("Ein unerwarteter Fehler ist aufgetreten.");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SwissTransportMainForm());
